@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SOLEHOUSE Services – Custom sneaker art, limited drops, streetwear apparel, restoration, collaborations & styling.">
+    <title>Services | SOLEHOUSE — Custom Sneaker & Streetwear</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES ----- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F7F7F7;
+            --text-main: #0F0F0F;
+            --text-muted: #3A3A3A;
+            --card-bg: #FFFFFF;
+            --border-subtle: #E0E0E0;
+            --accent-orange: #FF4600;
+            --navbar-bg: #FFFFFF;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #F0F0F0;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0F0F0F;
+            --bg-secondary: #1A1A1A;
+            --text-main: #FFFFFF;
+            --text-muted: #B0B0B0;
+            --card-bg: #1E1E1E;
+            --border-subtle: #2E2E2E;
+            --accent-orange: #FF4600;
+            --navbar-bg: #0F0F0F;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #1E1E1E;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-main);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* ----- NAVBAR ----- */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            border-bottom: 3px solid var(--accent-orange);
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(255, 70, 0, 0.15);
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: opacity 0.2s;
+        }
+        .logo:hover { opacity: 0.8; }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--bg-primary);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--accent-orange);
+        }
+        .logo-icon i { color: var(--accent-orange); font-size: 2rem; }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+        .logo-text span { color: var(--accent-orange); }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+        .desktop-nav { display: none; align-items: center; gap: 0.25rem; }
+        .nav-link {
+            color: var(--text-muted);
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 30px;
+        }
+        .nav-link:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .nav-link.active {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            font-weight: 800;
+        }
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-orange);
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(255, 70, 0, 0.25);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-muted);
+            transition: 0.2s;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 500;
+        }
+        .dropdown-item:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            border-radius: 12px;
+        }
+        .dropdown-arrow { font-size: 0.7rem; transition: 0.2s; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        .navbar-right-desktop { display: none; align-items: center; gap: 0.75rem; }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .icon-btn:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .login-btn {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            border: 2px solid var(--accent-orange);
+        }
+        .login-btn:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 3px solid var(--accent-orange);
+        }
+        .mobile-menu-close { color: var(--text-main); font-size: 2rem; background: none; border: none; cursor: pointer; }
+        .mobile-menu-items { padding: 1.5rem; }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .mobile-menu-item i { color: var(--accent-orange); margin-right: 1rem; width: 1.75rem; }
+        .mobile-dropdown { border-bottom: 1px solid var(--border-subtle); }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            padding: 1rem 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .mobile-dropdown-btn i:first-child { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+        }
+        .mobile-dropdown-content.active { max-height: 200px; padding: 0.75rem 0; }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .mobile-dropdown-content a:hover { background-color: var(--accent-orange); color: var(--pure-white); }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 600;
+        }
+        .mobile-action-item i { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-separator { margin: 1rem 0; border-top: 3px solid var(--accent-orange); }
+
+        /* ----- SERVICES PAGE ----- */
+        .section-label {
+            color: var(--accent-orange);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) { .section-title { font-size: 3rem; } }
+
+        .services-hero {
+            background: var(--bg-primary);
+            padding-top: 120px;
+            padding-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* ----- SECTION 1: Overview grid (3 cards) ----- */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) { .overview-grid { grid-template-columns: repeat(3, 1fr); } }
+        .overview-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            transition: 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+        .overview-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-6px);
+            box-shadow: 0 18px 36px rgba(255,70,0,0.12);
+        }
+        .overview-icon {
+            width: 5rem; height: 5rem; margin: 0 auto 1.5rem;
+            background: rgba(255,70,0,0.08);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.25rem; color: var(--accent-orange);
+        }
+        .overview-card h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+        .overview-card p { color: var(--text-muted); font-weight: 500; font-size: 0.95rem; flex: 1; margin-bottom: 1.5rem; }
+        .service-link-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.85rem 1.5rem;
+            border-radius: 9999px;
+            background: transparent;
+            border: 2px solid var(--accent-orange);
+            color: var(--text-main);
+            font-weight: 800;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .service-link-btn:hover {
+            background: var(--accent-orange);
+            color: var(--pure-white);
+        }
+
+        /* ----- SECTION 2: Split feature (image left, text right) ----- */
+        .split-feature {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) { .split-feature { grid-template-columns: 1fr 1fr; } }
+        .split-feature-img {
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 4px solid var(--accent-orange);
+            aspect-ratio: 4 / 3;
+            background: var(--bg-secondary);
+        }
+        .split-feature-img img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .split-feature-text h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .split-feature-text p { color: var(--text-muted); font-weight: 500; font-size: 1.05rem; margin-bottom: 1.5rem; }
+        .feature-bullets { list-style: none; margin-bottom: 2rem; }
+        .feature-bullets li {
+            padding: 0.6rem 0;
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            color: var(--text-muted); font-weight: 500;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .feature-bullets li:last-child { border-bottom: none; }
+        .feature-bullets i { color: var(--accent-orange); margin-top: 0.2rem; }
+
+        /* ----- SECTION 3: Horizontal process steps ----- */
+        .process-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 640px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .process-grid { grid-template-columns: repeat(4, 1fr); } }
+        .process-step {
+            background: var(--bg-secondary);
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: 0.25s;
+            position: relative;
+        }
+        .process-step:hover {
+            border-color: var(--accent-orange);
+            background: var(--card-bg);
+        }
+        .process-num {
+            position: absolute; top: -1rem; left: 50%; transform: translateX(-50%);
+            background: var(--accent-orange); color: var(--pure-white);
+            width: 2.5rem; height: 2.5rem; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 1rem;
+            border: 3px solid var(--bg-primary);
+        }
+        .process-step i {
+            font-size: 2rem; color: var(--accent-orange); margin-bottom: 1rem;
+            display: block; margin-top: 0.75rem;
+        }
+        .process-step h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .process-step p { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+
+        /* ----- SECTION 4: Service cards with details (clickable) ----- */
+        .services-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) { .services-detail-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .services-detail-grid { grid-template-columns: repeat(3, 1fr); } }
+        .detail-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 2rem;
+            overflow: hidden;
+            transition: 0.25s;
+            display: flex; flex-direction: column;
+        }
+        .detail-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(255,70,0,0.12);
+        }
+        .detail-card-img {
+            width: 100%; aspect-ratio: 16 / 10; overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .detail-card-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .detail-card:hover .detail-card-img img { transform: scale(1.06); }
+        .detail-card-body {
+            padding: 1.75rem;
+            display: flex; flex-direction: column; flex: 1;
+        }
+        .detail-card-tag {
+            background: var(--accent-orange); color: var(--pure-white);
+            padding: 0.3rem 0.85rem; border-radius: 9999px;
+            font-size: 0.7rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            display: inline-block; margin-bottom: 1rem;
+            align-self: flex-start;
+        }
+        .detail-card-body h3 { font-size: 1.35rem; margin-bottom: 0.5rem; }
+        .detail-card-body p { color: var(--text-muted); font-weight: 500; font-size: 0.95rem; flex: 1; margin-bottom: 1.5rem; }
+        .detail-card-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 1.25rem; border-top: 1px solid var(--border-subtle);
+        }
+        .detail-price { font-weight: 900; font-size: 1.25rem; color: var(--accent-orange); }
+        .detail-price span { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+        .detail-arrow {
+            width: 2.5rem; height: 2.5rem; border-radius: 50%;
+            background: rgba(255,70,0,0.1); color: var(--accent-orange);
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; cursor: pointer; border: none;
+        }
+        .detail-card:hover .detail-arrow {
+            background: var(--accent-orange); color: var(--pure-white);
+        }
+
+        /* ----- SECTION 5: Stats / Why choose us band ----- */
+        .why-band {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 640px) { .why-band { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .why-band { grid-template-columns: repeat(4, 1fr); } }
+        .why-item {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: 0.25s;
+        }
+        .why-item:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-4px);
+        }
+        .why-item i {
+            font-size: 2rem; color: var(--accent-orange); margin-bottom: 1rem; display: block;
+        }
+        .why-item h4 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .why-item p { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+
+        /* ----- SECTION 6: CTA band (different style) ----- */
+        .cta-services {
+            background: var(--accent-orange);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-services::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(circle at 80% 20%, rgba(255,255,255,0.15) 0px, transparent 50%);
+            pointer-events: none;
+        }
+        .cta-services-inner {
+            position: relative; z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) { .cta-services-inner { grid-template-columns: 1.3fr 1fr; } }
+        .cta-services h2 { font-size: 2.5rem; color: var(--pure-white); margin-bottom: 1rem; }
+        .cta-services p { color: rgba(255,255,255,0.9); font-weight: 500; font-size: 1.1rem; }
+        .cta-services-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-white {
+            background: var(--pure-black); color: var(--pure-white);
+            padding: 1rem 1.75rem; border-radius: 9999px;
+            font-weight: 800; display: inline-flex; align-items: center; gap: 0.5rem;
+            border: 2px solid var(--pure-black); cursor: pointer; transition: 0.2s;
+            font-family: inherit;
+        }
+        .btn-white:hover { background: transparent; color: var(--pure-white); border-color: var(--pure-white); }
+        .btn-ghost {
+            background: transparent; color: var(--pure-white);
+            padding: 1rem 1.75rem; border-radius: 9999px;
+            font-weight: 800; display: inline-flex; align-items: center; gap: 0.5rem;
+            border: 2px solid var(--pure-white); cursor: pointer; transition: 0.2s;
+            font-family: inherit;
+        }
+        .btn-ghost:hover { background: var(--pure-white); color: var(--accent-orange); }
+
+        /* ----- Dynamic Detail View (overlay/modal) ----- */
+        .detail-view {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-primary);
+            z-index: 5000;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .detail-view.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .detail-view-header {
+            background: var(--navbar-bg);
+            border-bottom: 3px solid var(--accent-orange);
+            padding: 0.75rem 0;
+            position: sticky; top: 0; z-index: 10;
+        }
+        .detail-view-close {
+            background: var(--accent-orange); color: var(--pure-white);
+            border: 2px solid var(--accent-orange);
+            padding: 0.6rem 1.25rem; border-radius: 9999px;
+            font-weight: 800; font-size: 0.9rem; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: 0.2s; font-family: inherit;
+        }
+        .detail-view-close:hover {
+            background: transparent; color: var(--text-main); border-color: var(--text-main);
+        }
+        .detail-view-body {
+            padding: 3rem 0 5rem 0;
+        }
+        .detail-hero-img {
+            width: 100%;
+            aspect-ratio: 21 / 9;
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 4px solid var(--accent-orange);
+            margin-bottom: 2.5rem;
+            background: var(--bg-secondary);
+        }
+        @media (max-width: 640px) { .detail-hero-img { aspect-ratio: 16 / 9; } }
+        .detail-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+        .detail-content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+        @media (min-width: 1024px) { .detail-content-grid { grid-template-columns: 1.5fr 1fr; } }
+        .detail-content-grid h1 { font-size: 2.75rem; margin-bottom: 0.75rem; }
+        .detail-content-grid .lead {
+            color: var(--text-muted); font-size: 1.15rem; font-weight: 500; margin-bottom: 2rem;
+        }
+        .detail-content-grid h3 {
+            font-size: 1.4rem; margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-orange);
+            display: inline-block;
+        }
+        .detail-content-grid p { color: var(--text-muted); font-weight: 500; margin-bottom: 1rem; }
+        .detail-content-grid ul { list-style: none; margin: 1rem 0 2rem 0; }
+        .detail-content-grid ul li {
+            padding: 0.6rem 0;
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            color: var(--text-muted); font-weight: 500;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .detail-content-grid ul li i { color: var(--accent-orange); margin-top: 0.2rem; }
+
+        .detail-sidebar {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2rem;
+            position: sticky;
+            top: 6rem;
+            height: fit-content;
+        }
+        @media (max-width: 1023px) { .detail-sidebar { position: static; } }
+        .detail-sidebar h3 { font-size: 1.25rem; margin-bottom: 1.25rem; }
+        .detail-sidebar .price-tag {
+            font-size: 2.75rem; font-weight: 900; color: var(--accent-orange);
+            line-height: 1; margin-bottom: 0.25rem;
+        }
+        .detail-sidebar .price-note {
+            color: var(--text-muted); font-size: 0.9rem; font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .detail-sidebar .sidebar-cta {
+            width: 100%; display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem;
+            background: var(--accent-orange); color: var(--pure-white);
+            border: 2px solid var(--accent-orange);
+            padding: 1rem; border-radius: 9999px;
+            font-weight: 800; font-size: 1rem;
+            cursor: pointer; transition: 0.2s; font-family: inherit;
+            margin-bottom: 0.75rem;
+        }
+        .detail-sidebar .sidebar-cta:hover {
+            background: transparent; color: var(--text-main); border-color: var(--text-main);
+        }
+        .detail-sidebar .sidebar-cta.secondary {
+            background: transparent; color: var(--text-main); border-color: var(--border-subtle);
+        }
+        .detail-sidebar .sidebar-cta.secondary:hover {
+            border-color: var(--accent-orange); color: var(--accent-orange);
+        }
+        .detail-sidebar .info-line {
+            display: flex; justify-content: space-between; padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-muted); font-size: 0.9rem; font-weight: 600;
+        }
+        .detail-sidebar .info-line strong { color: var(--text-main); font-weight: 700; }
+        .detail-sidebar .info-line:last-of-type { border-bottom: none; }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            padding: 4rem 0 2rem 0;
+            border-top: 3px solid var(--accent-orange);
+        }
+        .footer-grid {
+            display: grid;
+            gap: 2.5rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 3rem;
+        }
+        @media (min-width:768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
+        .footer-logo-block { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer .logo { margin-bottom: 0.5rem; }
+        .footer-heading {
+            color: var(--accent-orange);
+            margin-bottom: 1.25rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a {
+            color: var(--text-muted);
+            transition: 0.2s;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .footer-links a:hover { color: var(--accent-orange); padding-left: 4px; }
+        .footer-input {
+            width: 100%; padding: 0.75rem 1rem; border-radius: 9999px;
+            border: 2px solid var(--accent-orange);
+            background: var(--bg-primary); color: var(--text-main);
+            margin-bottom: 0.75rem; font-weight: 500;
+        }
+        .footer-btn {
+            width: 100%; background-color: var(--accent-orange); color: var(--pure-white);
+            padding: 0.75rem 1rem; border-radius: 9999px; font-weight: 800;
+            border: 2px solid var(--accent-orange); cursor: pointer; transition: 0.2s;
+        }
+        .footer-btn:hover { background: transparent; color: var(--text-main); border-color: var(--text-main); }
+        .copyright {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.5rem; text-align: center; color: var(--text-muted);
+            font-size: 0.9rem; font-weight: 500;
+        }
+
+        #scroll-top {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem;
+            background-color: var(--accent-orange); color: var(--pure-white); border-radius: 50%; border: 2px solid var(--accent-orange);
+            cursor: pointer; display: none; z-index: 100;
+        }
+        #scroll-top:hover { background: transparent; color: var(--text-main); }
+
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up { animation: fadeInUp 0.7s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <span class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="services.html" class="nav-link active">Services</a>
+            <a href="faq.html" class="nav-link">Faq</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-moon" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="login-btn"><i class="fas fa-map-marker-alt"></i> Visit Store</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home</span> <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a> <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="services.html" class="mobile-menu-item"><i class="fas fa-camera"></i> Services</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> Faq</a>
+        <a href="pricing.html" class="mobile-menu-item"><i class="fas fa-tag"></i> Pricing</a>
+        <a href="gallery.html" class="mobile-menu-item"><i class="fas fa-images"></i> Gallery</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" onclick="window.location.href='contact.html'"><i class="fas fa-map-marker-alt"></i> Visit Store</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-exchange-alt"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-moon" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- ===== SERVICES HERO ===== -->
+<section class="services-hero">
+    <div class="container">
+        <span class="section-label fade-in-up"><i class="fas fa-concierge-bell"></i> WHAT WE DO</span>
+        <h1 class="fade-in-up" style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.03em;">
+            SERVICES BUILT<br><span style="color: var(--accent-orange);">FOR THE CULTURE.</span>
+        </h1>
+        <p class="fade-in-up" style="font-size: 1.125rem; color: var(--text-muted); font-weight: 500; max-width: 620px; margin: 0 auto;">
+            From one-of-one customs to full streetwear capsules — we've got a service for every level of sneakerhead.
+        </p>
+    </div>
+</section>
+
+<!-- ===== SECTION 1: Overview Grid (3 cards) ===== -->
+<section style="background: var(--bg-primary); padding: 2rem 0 5rem 0;">
+    <div class="container">
+        <div class="overview-grid">
+            <div class="overview-card fade-in-up">
+                <div class="overview-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Custom Sneaker Art</h3>
+                <p>Hand-painted, airbrushed, and fully bespoke designs on the sneakers you love. One-of-one every time.</p>
+                <button class="service-link-btn" onclick="openDetail('custom')">View Details <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="overview-card fade-in-up">
+                <div class="overview-icon"><i class="fas fa-box-open"></i></div>
+                <h3>Limited Drops</h3>
+                <p>Exclusive sneaker capsules and rare pairs, curated and released in limited numbered runs.</p>
+                <button class="service-link-btn" onclick="openDetail('drops')">View Details <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="overview-card fade-in-up">
+                <div class="overview-icon"><i class="fas fa-tshirt"></i></div>
+                <h3>Streetwear Apparel</h3>
+                <p>Hoodies, tees, caps, and accessories designed with the same energy as our sneakers.</p>
+                <button class="service-link-btn" onclick="openDetail('apparel')">View Details <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECTION 2: Split Feature (Custom Art deep dive) ===== -->
+<section style="background: var(--bg-secondary); padding: 5rem 0;">
+    <div class="container">
+        <div class="split-feature">
+            <div class="split-feature-img fade-in-up">
+                <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop" alt="Custom sneaker painting" loading="lazy">
+            </div>
+            <div class="split-feature-text fade-in-up">
+                <span class="section-label">SIGNATURE SERVICE</span>
+                <h2>Custom Sneaker Art</h2>
+                <p>Our flagship service. Send us a pair (or buy new), tell us your vision, and our artists will hand-paint, airbrush, and seal a one-of-one masterpiece. Every pair is signed and numbered.</p>
+                <ul class="feature-bullets">
+                    <li><i class="fas fa-check-circle"></i> Premium leather paints & archival sealant</li>
+                    <li><i class="fas fa-check-circle"></i> Digital proof before we start painting</li>
+                    <li><i class="fas fa-check-circle"></i> Unlimited revisions on Creator & Elite packages</li>
+                    <li><i class="fas fa-check-circle"></i> Free touch-up kit with select packages</li>
+                </ul>
+                <button class="service-link-btn" onclick="openDetail('custom')">Explore Custom Art <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECTION 3: Process Steps ===== -->
+<section style="background: var(--bg-primary); padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <span class="section-label">HOW IT WORKS</span>
+            <h2 class="section-title">Four Steps to Heat</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">From first idea to finished pair — here's the SOLEHOUSE process.</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step fade-in-up">
+                <div class="process-num">1</div>
+                <i class="fas fa-comments"></i>
+                <h3>Consult</h3>
+                <p>Share your vision, references, and shoe size. We'll talk designs, timelines, and pricing.</p>
+            </div>
+            <div class="process-step fade-in-up">
+                <div class="process-num">2</div>
+                <i class="fas fa-pencil-ruler"></i>
+                <h3>Design</h3>
+                <p>We send you a digital proof. You approve it — or we revise until it's perfect.</p>
+            </div>
+            <div class="process-step fade-in-up">
+                <div class="process-num">3</div>
+                <i class="fas fa-paint-brush"></i>
+                <h3>Paint</h3>
+                <p>Our artists hand-paint and seal your pair. Every brushstroke is intentional.</p>
+            </div>
+            <div class="process-step fade-in-up">
+                <div class="process-num">4</div>
+                <i class="fas fa-truck-fast"></i>
+                <h3>Deliver</h3>
+                <p>Your custom is packed in premium packaging and shipped to your door.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECTION 4: Services Detail Grid (clickable cards) ===== -->
+<section style="background: var(--bg-secondary); padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span class="section-label">ALL SERVICES</span>
+            <h2 class="section-title">More Than Just Kicks</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Click any service to see full details, pricing, and what's included.</p>
+        </div>
+        <div class="services-detail-grid">
+
+            <div class="detail-card fade-in-up" onclick="openDetail('custom')" style="cursor:pointer;">
+                <div class="detail-card-img">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=2070&auto=format&fit=crop" alt="Custom sneaker art" loading="lazy">
+                </div>
+                <div class="detail-card-body">
+                    <span class="detail-card-tag">Custom</span>
+                    <h3>Custom Sneaker Art</h3>
+                    <p>Hand-painted one-of-one designs on your favorite silhouettes.</p>
+                    <div class="detail-card-footer">
+                        <div class="detail-price">$149<span>+</span></div>
+                        <div class="detail-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-card fade-in-up" onclick="openDetail('restoration')" style="cursor:pointer;">
+                <div class="detail-card-img">
+                    <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=2070&auto=format&fit=crop" alt="Sneaker restoration" loading="lazy">
+                </div>
+                <div class="detail-card-body">
+                    <span class="detail-card-tag">Restore</span>
+                    <h3>Sneaker Restoration</h3>
+                    <p>Bring your grails back to life — deep clean, repaint, and re-seal.</p>
+                    <div class="detail-card-footer">
+                        <div class="detail-price">$89<span>+</span></div>
+                        <div class="detail-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-card fade-in-up" onclick="openDetail('drops')" style="cursor:pointer;">
+                <div class="detail-card-img">
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2070&auto=format&fit=crop" alt="Limited drop sneaker" loading="lazy">
+                </div>
+                <div class="detail-card-body">
+                    <span class="detail-card-tag">Drops</span>
+                    <h3>Limited Drops</h3>
+                    <p>Exclusive numbered capsules and rare pairs, released in limited runs.</p>
+                    <div class="detail-card-footer">
+                        <div class="detail-price">$249<span>+</span></div>
+                        <div class="detail-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-card fade-in-up" onclick="openDetail('apparel')" style="cursor:pointer;">
+                <div class="detail-card-img">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=2070&auto=format&fit=crop" alt="Streetwear apparel" loading="lazy">
+                </div>
+                <div class="detail-card-body">
+                    <span class="detail-card-tag">Apparel</span>
+                    <h3>Streetwear Apparel</h3>
+                    <p>Heavyweight hoodies, tees, caps, and accessories with attitude.</p>
+                    <div class="detail-card-footer">
+                        <div class="detail-price">$59<span>+</span></div>
+                        <div class="detail-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-card fade-in-up" onclick="openDetail('collab')" style="cursor:pointer;">
+                <div class="detail-card-img">
+                    <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=2070&auto=format&fit=crop" alt="Brand collaboration" loading="lazy">
+                </div>
+                <div class="detail-card-body">
+                    <span class="detail-card-tag">Collab</span>
+                    <h3>Brand Collaborations</h3>
+                    <p>Custom capsules, team kicks, and brand activations built together.</p>
+                    <div class="detail-card-footer">
+                        <div class="detail-price">Custom<span>quote</span></div>
+                        <div class="detail-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-card fade-in-up" onclick="openDetail('styling')" style="cursor:pointer;">
+                <div class="detail-card-img">
+                    <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2070&auto=format&fit=crop" alt="Sneaker styling session" loading="lazy">
+                </div>
+                <div class="detail-card-body">
+                    <span class="detail-card-tag">Styling</span>
+                    <h3>Sneaker Styling</h3>
+                    <p>1-on-1 sessions to build outfits around your rotation and elevate your look.</p>
+                    <div class="detail-card-footer">
+                        <div class="detail-price">$79<span>/session</span></div>
+                        <div class="detail-arrow"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECTION 5: Why Choose Us ===== -->
+<section style="background: var(--bg-primary); padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <span class="section-label">WHY SOLEHOUSE</span>
+            <h2 class="section-title">The Difference Is Real</h2>
+        </div>
+        <div class="why-band">
+            <div class="why-item fade-in-up">
+                <i class="fas fa-award"></i>
+                <h4>3,200+ Pairs</h4>
+                <p>Customs shipped worldwide since 2018.</p>
+            </div>
+            <div class="why-item fade-in-up">
+                <i class="fas fa-clock"></i>
+                <h4>24h Turnaround</h4>
+                <p>Elite orders painted and shipped in a day.</p>
+            </div>
+            <div class="why-item fade-in-up">
+                <i class="fas fa-leaf"></i>
+                <h4>Archival Materials</h4>
+                <p>Premium paints that flex, seal, and last.</p>
+            </div>
+            <div class="why-item fade-in-up">
+                <i class="fas fa-users"></i>
+                <h4>Artist Collective</h4>
+                <p>A rotating team of the best custom artists.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SECTION 6: CTA Band ===== -->
+<section class="cta-services">
+    <div class="container">
+        <div class="cta-services-inner">
+            <div>
+                <span class="section-label" style="color: var(--pure-white); opacity: 0.85;">READY?</span>
+                <h2>Let's build your next pair.</h2>
+                <p>Tell us what you want. We'll handle the rest — from concept to delivery.</p>
+            </div>
+            <div class="cta-services-btns">
+                <a href="contact.html" class="btn-white"><i class="fas fa-paper-plane"></i> Start an Order</a>
+                <a href="pricing.html" class="btn-ghost"><i class="fas fa-tag"></i> View Pricing</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-logo-block">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+                    <div>
+                        <div class="logo-text">SOLE<span>HOUSE</span></div>
+                        <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+                    </div>
+                </a>
+                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem; max-width: 220px;">From limited drops to one-of-one customs — we bring the heat to your feet and your wardrobe.</p>
+            </div>
+            <div>
+                <h3 class="footer-heading">Quick links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="faq.html">Faq</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Stay Updated</h3>
+                <input class="footer-input" placeholder="Your email address">
+                <button class="footer-btn">Subscribe</button>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <i class="fab fa-instagram" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-youtube" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-tiktok" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <i class="fas fa-copyright"></i> 2025 SOLEHOUSE — White · Black · Hype Orange. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- ===== DYNAMIC DETAIL VIEW (opens on service click) ===== -->
+<div class="detail-view" id="detail-view">
+    <div class="detail-view-header">
+        <div class="container" style="display:flex; justify-content: space-between; align-items: center;">
+            <a href="index.html" class="logo">
+                <div class="logo-icon" style="width: 2.5rem; height: 2.5rem;"><i class="fas fa-shoe-prints" style="font-size: 1.5rem;"></i></div>
+                <div>
+                    <div class="logo-text" style="font-size: 1.25rem;">SOLE<span>HOUSE</span></div>
+                </div>
+            </a>
+            <button class="detail-view-close" onclick="closeDetail()"><i class="fas fa-times"></i> Close</button>
+        </div>
+    </div>
+    <div class="detail-view-body">
+        <div class="container" id="detail-view-content">
+            <!-- Content injected dynamically by JS -->
+        </div>
+    </div>
+</div>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopThemeBtn = document.getElementById('desktop-theme-toggle');
+        const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        let savedTheme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', savedTheme);
+        updateIcons(savedTheme);
+
+        function updateIcons(theme) {
+            const iconClass = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (desktopIcon) desktopIcon.className = iconClass;
+            if (mobileIcon) mobileIcon.className = iconClass;
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcons(newTheme);
+        }
+
+        if (desktopThemeBtn) desktopThemeBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if (desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if (mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id)?.classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id)?.classList.toggle('active');
+        };
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        if (closeBtn) closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        if (mobileMenu) mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) mobileMenu.classList.remove('active'); });
+
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => { if(scrollBtn) scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; });
+        if (scrollBtn) scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && mobileMenu) mobileMenu.classList.remove('active'); });
+
+        /* ===== DYNAMIC SERVICE DETAIL VIEW ===== */
+
+        const SERVICES = {
+            custom: {
+                tag: 'Custom',
+                title: 'Custom Sneaker Art',
+                price: '$149',
+                priceNote: 'per pair · starting price',
+                turnaround: '3–7 days',
+                revisions: 'Unlimited (Creator & Elite)',
+                shipping: 'Worldwide',
+                hero: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop',
+                lead: 'Hand-painted, airbrushed, and fully bespoke designs on the sneakers you love. Every pair is a one-of-one, signed and numbered by the artist.',
+                body: `
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Full design consultation with a SOLEHOUSE artist</li>
+                        <li><i class="fas fa-check-circle"></i> Digital proof sent before any paint touches the shoe</li>
+                        <li><i class="fas fa-check-circle"></i> Premium leather paints, dyes, and archival sealant</li>
+                        <li><i class="fas fa-check-circle"></i> Edge sealing and water-resistant topcoat</li>
+                        <li><i class="fas fa-check-circle"></i> Hand-signed and numbered by the artist</li>
+                        <li><i class="fas fa-check-circle"></i> Free touch-up kit on Creator and Elite packages</li>
+                    </ul>
+                    <h3>How It Works</h3>
+                    <p>Send us your pair (or buy new through us). We'll talk through your vision, produce a digital mockup, and once approved, hand-paint your custom in our Chicago studio. Standard turnaround is 3–7 days, with Elite orders painted in 24–48 hours.</p>
+                    <h3>Best For</h3>
+                    <p>Sneakerheads who want a truly personal pair, gifts, wedding kicks, brand activations, and anyone tired of seeing the same general-release colorways.</p>
+                `
+            },
+            restoration: {
+                tag: 'Restore',
+                title: 'Sneaker Restoration',
+                price: '$89',
+                priceNote: 'per pair · starting price',
+                turnaround: '5–10 days',
+                revisions: 'N/A',
+                shipping: 'Worldwide',
+                hero: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=2070&auto=format&fit=crop',
+                lead: 'Bring your grails back to life. Deep clean, repaint, re-stitch, and re-seal — we restore sneakers to near-original condition or better.',
+                body: `
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Full deep-clean of upper, midsole, and outsole</li>
+                        <li><i class="fas fa-check-circle"></i> De-yellowing treatment for aged soles</li>
+                        <li><i class="fas fa-check-circle"></i> Repainting and color-matching to original spec</li>
+                        <li><i class="fas fa-check-circle"></i> Minor stitching repair where possible</li>
+                        <li><i class="fas fa-check-circle"></i> Protective sealant reapplication</li>
+                        <li><i class="fas fa-check-circle"></i> Before / after photo report</li>
+                    </ul>
+                    <h3>How It Works</h3>
+                    <p>Ship us your pair. We assess the condition, send you a quote with photos, and once approved, restore them. Most pairs take 5–10 days depending on how much work is needed.</p>
+                    <h3>Best For</h3>
+                    <p>Collectors with yellowed or scuffed grails, vintage finds, and everyday pairs that just need a second life.</p>
+                `
+            },
+            drops: {
+                tag: 'Drops',
+                title: 'Limited Drops',
+                price: '$249',
+                priceNote: 'per pair · starting price',
+                turnaround: 'Ships in 1–3 days',
+                revisions: 'N/A',
+                shipping: 'Worldwide',
+                hero: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2070&auto=format&fit=crop',
+                lead: "Exclusive numbered capsules and rare pairs, curated by our team and released in limited runs. When they're gone, they're gone.",
+                body: `
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Authenticated, curated sneakers from our vault</li>
+                        <li><i class="fas fa-check-circle"></i> Numbered edition card with every pair</li>
+                        <li><i class="fas fa-check-circle"></i> Premium SOLEHOUSE packaging</li>
+                        <li><i class="fas fa-check-circle"></i> Early access for Creator and Elite members</li>
+                        <li><i class="fas fa-check-circle"></i> Restock notifications on sold-out drops</li>
+                    </ul>
+                    <h3>How It Works</h3>
+                    <p>Drops are announced on our Instagram and via email. Creator members get 24-hour early access, Elite members get 48 hours. Once live, orders ship within 1–3 days.</p>
+                    <h3>Best For</h3>
+                    <p>Collectors who want rare pairs without the resale markup, and sneakerheads who love the thrill of a limited release.</p>
+                `
+            },
+            apparel: {
+                tag: 'Apparel',
+                title: 'Streetwear Apparel',
+                price: '$59',
+                priceNote: 'per item · starting price',
+                turnaround: 'Ships in 1–2 days',
+                revisions: 'N/A',
+                shipping: 'Worldwide',
+                hero: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=2070&auto=format&fit=crop',
+                lead: 'Heavyweight hoodies, tees, caps, and accessories designed with the same energy as our sneakers. Built to last, made to stand out.',
+                body: `
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 400–450gsm heavyweight cotton on hoodies and tees</li>
+                        <li><i class="fas fa-check-circle"></i> Embroidered and screen-printed SOLEHOUSE branding</li>
+                        <li><i class="fas fa-check-circle"></i> Limited seasonal capsules — no endless restocks</li>
+                        <li><i class="fas fa-check-circle"></i> Unisex sizing, true to fit</li>
+                        <li><i class="fas fa-check-circle"></i> Matching sneaker + apparel bundles available</li>
+                    </ul>
+                    <h3>How It Works</h3>
+                    <p>Shop directly on our site. Apparel ships within 1–2 days and pairs perfectly with any custom or drop you pick up.</p>
+                    <h3>Best For</h3>
+                    <p>Anyone building a full fit. Our apparel is designed to complement the sneakers, not compete with them.</p>
+                `
+            },
+            collab: {
+                tag: 'Collab',
+                title: 'Brand Collaborations',
+                price: 'Custom',
+                priceNote: 'quote based on scope',
+                turnaround: '4–8 weeks',
+                revisions: 'Included',
+                shipping: 'Worldwide',
+                hero: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=2070&auto=format&fit=crop',
+                lead: 'Custom capsules, team kicks, brand activations, and artist collabs. We work with brands, athletes, and creators to build something unforgettable.',
+                body: `
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Dedicated project manager and design lead</li>
+                        <li><i class="fas fa-check-circle"></i> Full custom design and production run</li>
+                        <li><i class="fas fa-check-circle"></i> Bulk pricing for team and brand orders</li>
+                        <li><i class="fas fa-check-circle"></i> Co-branded packaging and collateral</li>
+                        <li><i class="fas fa-check-circle"></i> Photo and video content for launch</li>
+                        <li><i class="fas fa-check-circle"></i> Timeline typically 4–8 weeks depending on scope</li>
+                    </ul>
+                    <h3>How It Works</h3>
+                    <p>Reach out through our contact page with "Collaboration" as your topic. We'll set up a call, scope the project, and send a custom quote and timeline.</p>
+                    <h3>Best For</h3>
+                    <p>Brands, sports teams, musicians, athletes, and creators who want custom footwear or apparel as part of a launch or activation.</p>
+                `
+            },
+            styling: {
+                tag: 'Styling',
+                title: 'Sneaker Styling',
+                price: '$79',
+                priceNote: 'per session · 60 minutes',
+                turnaround: 'Book within 48h',
+                revisions: 'N/A',
+                shipping: 'Virtual or in-studio',
+                hero: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2070&auto=format&fit=crop',
+                lead: '1-on-1 sessions to build outfits around your rotation and elevate your look. Virtual or in-studio at our Chicago HQ.',
+                body: `
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 60-minute 1-on-1 styling session</li>
+                        <li><i class="fas fa-check-circle"></i> Outfit recommendations built around your sneakers</li>
+                        <li><i class="fas fa-check-circle"></i> Fit, color, and silhouette guidance</li>
+                        <li><i class="fas fa-check-circle"></i> Personalized lookbook PDF after the session</li>
+                        <li><i class="fas fa-check-circle"></i> Discounts on SOLEHOUSE apparel post-session</li>
+                    </ul>
+                    <h3>How It Works</h3>
+                    <p>Book a slot through our contact page. Sessions are available virtually (video call) or in person at our Chicago studio. Bring your rotation, we'll do the rest.</p>
+                    <h3>Best For</h3>
+                    <p>Sneakerheads who have the kicks but want to level up the fits, content creators, and anyone prepping for an event or shoot.</p>
+                `
+            }
+        };
+
+        const detailView = document.getElementById('detail-view');
+        const detailContent = document.getElementById('detail-view-content');
+
+        window.openDetail = function(key) {
+            const data = SERVICES[key];
+            if (!data) return;
+
+            detailContent.innerHTML = `
+                <div class="detail-hero-img fade-in-up">
+                    <img src="${data.hero}" alt="${data.title}" loading="lazy">
+                </div>
+                <div class="detail-content-grid">
+                    <div class="detail-main fade-in-up">
+                        <span class="section-label">${data.tag}</span>
+                        <h1>${data.title}</h1>
+                        <p class="lead">${data.lead}</p>
+                        ${data.body}
+                    </div>
+                    <aside class="detail-sidebar fade-in-up">
+                        <h3>At a Glance</h3>
+                        <div class="price-tag">${data.price}</div>
+                        <div class="price-note">${data.priceNote}</div>
+                        <button class="sidebar-cta" onclick="location.href='contact.html'"><i class="fas fa-paper-plane"></i> Start This Service</button>
+                        <button class="sidebar-cta secondary" onclick="location.href='pricing.html'"><i class="fas fa-tag"></i> View Pricing</button>
+                        <div style="margin-top: 1.5rem;">
+                            <div class="info-line"><span>Turnaround</span><strong>${data.turnaround}</strong></div>
+                            <div class="info-line"><span>Revisions</span><strong>${data.revisions}</strong></div>
+                            <div class="info-line"><span>Shipping</span><strong>${data.shipping}</strong></div>
+                        </div>
+                    </aside>
+                </div>
+            `;
+
+            detailView.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            detailView.scrollTop = 0;
+
+            // Update URL hash for shareable links
+            try { history.replaceState(null, '', '#service-' + key); } catch(e) {}
+        };
+
+        window.closeDetail = function() {
+            detailView.classList.remove('active');
+            document.body.style.overflow = '';
+            try { history.replaceState(null, '', window.location.pathname + window.location.search); } catch(e) {}
+        };
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && detailView.classList.contains('active')) closeDetail();
+        });
+
+        // Open detail from URL hash on page load
+        window.addEventListener('load', () => {
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#service-')) {
+                const key = hash.replace('#service-', '');
+                if (SERVICES[key]) openDetail(key);
+            }
+        });
+
+        // Handle back/forward navigation
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#service-')) {
+                const key = hash.replace('#service-', '');
+                if (SERVICES[key]) openDetail(key);
+            } else if (detailView.classList.contains('active')) {
+                closeDetail();
+            }
+        });
+    })();
+</script>
+</body>
+</html>

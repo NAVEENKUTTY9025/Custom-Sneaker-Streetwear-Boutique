@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact SOLEHOUSE – Custom sneaker orders, collaborations & support. Get in touch.">
+    <title>Contact | SOLEHOUSE — Custom Sneaker & Streetwear</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES (identical theme) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F7F7F7;
+            --text-main: #0F0F0F;
+            --text-muted: #3A3A3A;
+            --card-bg: #FFFFFF;
+            --border-subtle: #E0E0E0;
+            --accent-orange: #FF4600;
+            --navbar-bg: #FFFFFF;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #F0F0F0;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0F0F0F;
+            --bg-secondary: #1A1A1A;
+            --text-main: #FFFFFF;
+            --text-muted: #B0B0B0;
+            --card-bg: #1E1E1E;
+            --border-subtle: #2E2E2E;
+            --accent-orange: #FF4600;
+            --navbar-bg: #0F0F0F;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #1E1E1E;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-main);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* ----- NAVBAR (exact same) ----- */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            border-bottom: 3px solid var(--accent-orange);
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(255, 70, 0, 0.15);
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: opacity 0.2s;
+        }
+        .logo:hover { opacity: 0.8; }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--bg-primary);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--accent-orange);
+        }
+        .logo-icon i { color: var(--accent-orange); font-size: 2rem; }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+        .logo-text span { color: var(--accent-orange); }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+        .desktop-nav { display: none; align-items: center; gap: 0.25rem; }
+        .nav-link {
+            color: var(--text-muted);
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 30px;
+        }
+        .nav-link:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .nav-link.active {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            font-weight: 800;
+        }
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-orange);
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(255, 70, 0, 0.25);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-muted);
+            transition: 0.2s;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 500;
+        }
+        .dropdown-item:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            border-radius: 12px;
+        }
+        .dropdown-arrow { font-size: 0.7rem; transition: 0.2s; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        .navbar-right-desktop { display: none; align-items: center; gap: 0.75rem; }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .icon-btn:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .login-btn {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            border: 2px solid var(--accent-orange);
+        }
+        .login-btn:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 3px solid var(--accent-orange);
+        }
+        .mobile-menu-close { color: var(--text-main); font-size: 2rem; background: none; border: none; cursor: pointer; }
+        .mobile-menu-items { padding: 1.5rem; }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .mobile-menu-item i { color: var(--accent-orange); margin-right: 1rem; width: 1.75rem; }
+        .mobile-dropdown { border-bottom: 1px solid var(--border-subtle); }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            padding: 1rem 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .mobile-dropdown-btn i:first-child { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+        }
+        .mobile-dropdown-content.active { max-height: 200px; padding: 0.75rem 0; }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .mobile-dropdown-content a:hover { background-color: var(--accent-orange); color: var(--pure-white); }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 600;
+        }
+        .mobile-action-item i { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-separator { margin: 1rem 0; border-top: 3px solid var(--accent-orange); }
+
+        /* ----- CONTACT PAGE SPECIFIC ----- */
+        .section-label {
+            color: var(--accent-orange);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .section-title { font-size: 3rem; }
+        }
+
+        /* Contact hero */
+        .contact-hero {
+            background: var(--bg-primary);
+            padding-top: 120px;
+            padding-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* Quick contact cards */
+        .quick-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        @media (min-width: 640px) {
+            .quick-cards { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .quick-cards { grid-template-columns: repeat(3, 1fr); }
+        }
+        .quick-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            transition: 0.25s;
+        }
+        .quick-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-6px);
+            box-shadow: 0 18px 36px rgba(255,70,0,0.12);
+        }
+        .quick-icon {
+            width: 4rem;
+            height: 4rem;
+            margin: 0 auto 1.25rem;
+            background: rgba(255,70,0,0.08);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-orange);
+            font-size: 1.75rem;
+        }
+        .quick-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .quick-card p {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+        .quick-card a {
+            color: var(--accent-orange);
+            font-weight: 800;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .quick-card a:hover {
+            letter-spacing: 0.5px;
+        }
+
+        /* Contact form + info split */
+        .contact-split {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .contact-split { grid-template-columns: 1.2fr 1fr; }
+        }
+
+        .contact-form-wrap {
+            background: var(--card-bg);
+            border: 3px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2.5rem;
+        }
+        @media (min-width: 640px) {
+            .contact-form-wrap { padding: 3rem; }
+        }
+        .contact-form-wrap h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-form-wrap > p {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .form-row.two-col { grid-template-columns: 1fr 1fr; }
+        }
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .form-group label span {
+            color: var(--accent-orange);
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border-radius: 1rem;
+            border: 2px solid var(--border-subtle);
+            background: var(--bg-primary);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.2s;
+            outline: none;
+        }
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 4px rgba(255,70,0,0.1);
+        }
+        .form-textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23FF4600' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.25rem center;
+            padding-right: 3rem;
+        }
+        .form-submit {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 1rem;
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: inherit;
+            width: 100%;
+            justify-content: center;
+        }
+        .form-submit:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+
+        /* Contact info side */
+        .contact-info-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .info-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2rem;
+            transition: 0.25s;
+        }
+        .info-card:hover {
+            border-color: var(--accent-orange);
+        }
+        .info-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .info-card h3 i {
+            color: var(--accent-orange);
+        }
+        .info-list {
+            list-style: none;
+        }
+        .info-list li {
+            display: flex;
+            gap: 1rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            align-items: flex-start;
+        }
+        .info-list li:last-child { border-bottom: none; }
+        .info-list li i {
+            color: var(--accent-orange);
+            width: 1.25rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+        .info-list li strong {
+            display: block;
+            color: var(--text-main);
+            font-weight: 700;
+            margin-bottom: 0.15rem;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border: 2px solid var(--accent-orange);
+            background: transparent;
+            color: var(--accent-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .social-btn:hover {
+            background: var(--accent-orange);
+            color: var(--pure-white);
+            transform: translateY(-3px);
+        }
+
+        /* Map */
+        .map-section {
+            background: var(--bg-secondary);
+            padding: 5rem 0;
+        }
+        .map-wrap {
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 4px solid var(--accent-orange);
+            height: 450px;
+            position: relative;
+            background: var(--bg-primary);
+        }
+        .map-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+            filter: grayscale(0.1);
+        }
+        .map-info-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            padding: 1.5rem 2rem;
+            margin-top: 1.5rem;
+        }
+        .map-info-bar .item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .map-info-bar .item i {
+            color: var(--accent-orange);
+            font-size: 1.25rem;
+        }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        @media (min-width: 768px) {
+            .faq-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        .faq-item {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            padding: 1.75rem;
+            transition: 0.25s;
+        }
+        .faq-item:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+        .faq-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        .faq-item h3 i {
+            color: var(--accent-orange);
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+        }
+        .faq-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        /* CTA banner */
+        .cta-banner {
+            background: var(--accent-orange);
+            padding: 4rem 0;
+        }
+        .cta-banner h2 {
+            font-size: 3rem;
+            color: var(--pure-white);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .cta-banner p {
+            color: var(--pure-white);
+            font-weight: 500;
+            text-align: center;
+            font-size: 1.125rem;
+        }
+        .cta-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 1rem 1.75rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .btn-outline {
+            border: 2px solid var(--accent-orange);
+            color: var(--text-main);
+            padding: 1rem 1.75rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            background: transparent;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-outline:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+
+        /* ----- FOOTER (exact same) ----- */
+        .footer {
+            background-color: var(--bg-primary); 
+            color: var(--text-main); 
+            padding: 4rem 0 2rem 0; 
+            border-top: 3px solid var(--accent-orange);
+        }
+        .footer-grid { 
+            display: grid; 
+            gap: 2.5rem; 
+            grid-template-columns: 1fr; 
+            margin-bottom: 3rem;
+        }
+        @media (min-width:768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
+        .footer-logo-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer .logo { margin-bottom: 0.5rem; }
+        .footer-heading { 
+            color: var(--accent-orange); 
+            margin-bottom: 1.25rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { 
+            color: var(--text-muted); 
+            transition: 0.2s; 
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .footer-links a:hover { 
+            color: var(--accent-orange); 
+            padding-left: 4px;
+        }
+        .footer-input {
+            width: 100%; 
+            padding: 0.75rem 1rem; 
+            border-radius: 9999px; 
+            border: 2px solid var(--accent-orange);
+            background: var(--bg-primary); 
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        .footer-btn {
+            width: 100%; 
+            background-color: var(--accent-orange); 
+            color: var(--pure-white); 
+            padding: 0.75rem 1rem;
+            border-radius: 9999px; 
+            font-weight: 800; 
+            border: 2px solid var(--accent-orange); 
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .footer-btn:hover { 
+            background: transparent; 
+            color: var(--text-main); 
+            border-color: var(--text-main); 
+        }
+        .copyright { 
+            border-top: 1px solid var(--border-subtle); 
+            padding-top: 1.5rem; 
+            text-align: center; 
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        #scroll-top {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem;
+            background-color: var(--accent-orange); color: var(--pure-white); border-radius: 50%; border: 2px solid var(--accent-orange);
+            cursor: pointer; display: none; z-index: 100;
+        }
+        #scroll-top:hover { background: transparent; color: var(--text-main); }
+
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up { animation: fadeInUp 0.7s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Success toast */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(120%);
+            background: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            z-index: 10001;
+            transition: transform 0.4s ease;
+            box-shadow: 0 12px 30px rgba(255,70,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (identical) -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <span class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="faq.html" class="nav-link">Faq</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link active">Contact</a>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-moon" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="login-btn"><i class="fas fa-map-marker-alt"></i> Visit Store</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu (identical) -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home</span> <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a> <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="services.html" class="mobile-menu-item"><i class="fas fa-camera"></i> Services</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> Faq</a>
+        <a href="pricing.html" class="mobile-menu-item"><i class="fas fa-tag"></i> Pricing</a>
+        <a href="gallery.html" class="mobile-menu-item"><i class="fas fa-images"></i> Gallery</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" onclick="window.location.href='contact.html'"><i class="fas fa-map-marker-alt"></i> Visit Store</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-exchange-alt"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-moon" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- ===== CONTACT HERO ===== -->
+<section class="contact-hero">
+    <div class="container">
+        <span class="section-label fade-in-up"><i class="fas fa-envelope"></i> GET IN TOUCH</span>
+        <h1 class="fade-in-up" style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.03em;">
+            LET'S MAKE<br><span style="color: var(--accent-orange);">SOMETHING HEAT.</span>
+        </h1>
+        <p class="fade-in-up" style="font-size: 1.125rem; color: var(--text-muted); font-weight: 500; max-width: 620px; margin: 0 auto;">
+            Custom orders, collaborations, press, or just want to talk sneakers — we're here. Drop us a line and we'll get back within 24 hours.
+        </p>
+    </div>
+</section>
+
+<!-- ===== QUICK CONTACT CARDS ===== -->
+<section style="background: var(--bg-primary); padding: 2rem 0 5rem 0;">
+    <div class="container">
+        <div class="quick-cards">
+
+            <div class="quick-card fade-in-up">
+                <div class="quick-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Custom Orders</h3>
+                <p>Ready to design your pair? Start your custom order and we'll guide you through every step.</p>
+                <a href="#contact-form">Start an order <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="quick-card fade-in-up">
+                <div class="quick-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Collaborations</h3>
+                <p>Brand, artist, or athlete looking to collab? We're always down for the right project.</p>
+                <a href="#contact-form">Let's talk <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="quick-card fade-in-up">
+                <div class="quick-icon"><i class="fas fa-headset"></i></div>
+                <h3>Order Support</h3>
+                <p>Need help with an existing order? Our support team is on it, usually within a few hours.</p>
+                <a href="#contact-form">Get support <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTACT FORM + INFO ===== -->
+<section id="contact-form" style="background: var(--bg-secondary); padding: 5rem 0;">
+    <div class="container">
+        <div class="contact-split">
+
+            <!-- FORM -->
+            <div class="contact-form-wrap fade-in-up">
+                <span class="section-label">SEND A MESSAGE</span>
+                <h2>Tell us what you need</h2>
+                <p>Fill out the form below and we'll get back within 24 hours. For custom orders, include your shoe size and preferred style.</p>
+
+                <form id="contact-form-el">
+                    <div class="form-row two-col">
+                        <div class="form-group">
+                            <label for="name">Full Name <span>*</span></label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span>*</span></label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row two-col">
+                        <div class="form-group">
+                            <label for="phone">Phone (optional)</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="topic">I'm reaching out about <span>*</span></label>
+                            <select id="topic" name="topic" class="form-select" required>
+                                <option value="" disabled selected>Select a topic</option>
+                                <option value="custom">Custom Sneaker Order</option>
+                                <option value="drop">Limited Drop / Restock</option>
+                                <option value="collab">Collaboration</option>
+                                <option value="support">Order Support</option>
+                                <option value="press">Press / Media</option>
+                                <option value="other">Something Else</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject <span>*</span></label>
+                        <input type="text" id="subject" name="subject" class="form-input" placeholder="Brief subject line" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message <span>*</span></label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us everything — design ideas, sizes, timelines, references..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+
+            <!-- INFO SIDE -->
+            <div class="contact-info-wrap">
+
+                <div class="info-card fade-in-up">
+                    <h3><i class="fas fa-map-marker-alt"></i> Visit the Studio</h3>
+                    <ul class="info-list">
+                        <li>
+                            <i class="fas fa-location-dot"></i>
+                            <div>
+                                <strong>SOLEHOUSE HQ</strong>
+                                2148 W Division St, Chicago, IL 60622
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Studio Hours</strong>
+                                Mon–Fri: 10am – 7pm · Sat: 11am – 5pm · Sun: Closed
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-card fade-in-up">
+                    <h3><i class="fas fa-address-book"></i> Reach Us Directly</h3>
+                    <ul class="info-list">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                hello@solehouse.com
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone</strong>
+                                +1 (312) 555-0198
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-comments"></i>
+                            <div>
+                                <strong>Custom Orders</strong>
+                                customs@solehouse.com
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-newspaper"></i>
+                            <div>
+                                <strong>Press</strong>
+                                press@solehouse.com
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="social-row">
+                        <a href="#" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-btn" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-btn" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MAP ===== -->
+<section class="map-section">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="section-label">FIND US</span>
+            <h2 class="section-title">Come Through the Studio</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Walk-ins welcome for consultations. Custom orders can be dropped off and picked up during studio hours.</p>
+        </div>
+
+        <div class="map-wrap fade-in-up">
+            <!-- Google Maps embed (Chicago W Division St area) -->
+            <iframe
+                src="https://www.google.com/maps?q=2148+W+Division+St,+Chicago,+IL+60622&output=embed"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="SOLEHOUSE Studio Location">
+            </iframe>
+        </div>
+
+        <div class="map-info-bar fade-in-up">
+            <div class="item"><i class="fas fa-location-dot"></i> 2148 W Division St, Chicago, IL 60622</div>
+            <div class="item"><i class="fas fa-subway"></i> 2 min walk from Division Blue Line</div>
+            <div class="item"><i class="fas fa-car"></i> Street parking available</div>
+            <div class="item"><i class="fas fa-clock"></i> Mon–Sat · 10am–7pm</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section style="background: var(--bg-primary); padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <span class="section-label">QUICK ANSWERS</span>
+            <h2 class="section-title">Before You Hit Send</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Common questions we get — might save you a message.</p>
+        </div>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> How long does a custom order take?</h3>
+                <p>Standard turnaround is 3–7 days depending on the package. Elite orders can be done in 24–48 hours. Shipping adds 2–5 days in the US.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> Can I mail in my own sneakers?</h3>
+                <p>Yes! We accept shipped-in pairs for all custom packages. Just mention it in your message and we'll send you a prepaid label (US only).</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> Do you ship internationally?</h3>
+                <p>We ship worldwide. Elite packages include free international shipping. Rates for other tiers are calculated at checkout.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> How do I start a custom order?</h3>
+                <p>Fill out the form above with topic "Custom Sneaker Order" and include your size, shoe model, and any design ideas. We'll reply with a quote and timeline.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> Do you do bulk or team orders?</h3>
+                <p>Absolutely. We handle team customs, brand activations, and bulk gifting. Reach out with "Collaboration" as your topic and we'll put together a custom quote.</p>
+            </div>
+            <div class="faq-item">
+                <h3><i class="fas fa-question-circle"></i> What if I need to change my order?</h3>
+                <p>Reach out ASAP. If we haven't started painting yet, changes are easy. Once paint is on, changes depend on the design — we'll always work with you.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<section class="cta-banner">
+    <div class="container">
+        <h2>Don't want to wait?</h2>
+        <p>Skip the form and start your custom order directly. 10% off your first pair with code <strong>SOLE10</strong>.</p>
+        <div class="cta-btns">
+            <a href="pricing.html" class="btn-primary" style="background: var(--pure-black); border-color: var(--pure-black); color: var(--pure-white);">
+                View Pricing
+            </a>
+            <a href="gallery.html" class="btn-outline" style="border-color: var(--pure-white); color: var(--pure-white);">
+                See Gallery
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER (exact same) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-logo-block">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+                    <div>
+                        <div class="logo-text">SOLE<span>HOUSE</span></div>
+                        <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+                    </div>
+                </a>
+                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem; max-width: 220px;">From limited drops to one-of-one customs — we bring the heat to your feet and your wardrobe.</p>
+            </div>
+            <div>
+                <h3 class="footer-heading">Quick links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="faq.html">Faq</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Stay Updated</h3>
+                <input class="footer-input" placeholder="Your email address">
+                <button class="footer-btn">Subscribe</button>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <i class="fab fa-instagram" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-youtube" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-tiktok" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <i class="fas fa-copyright"></i> 2025 SOLEHOUSE — White · Black · Hype Orange. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Success toast -->
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Message sent! We'll get back within 24 hours.</span>
+</div>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopThemeBtn = document.getElementById('desktop-theme-toggle');
+        const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        let savedTheme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', savedTheme);
+        updateIcons(savedTheme);
+
+        function updateIcons(theme) {
+            const iconClass = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (desktopIcon) desktopIcon.className = iconClass;
+            if (mobileIcon) mobileIcon.className = iconClass;
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcons(newTheme);
+        }
+
+        if (desktopThemeBtn) desktopThemeBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if (desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if (mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id)?.classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id)?.classList.toggle('active');
+        };
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        if (closeBtn) closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        if (mobileMenu) mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) mobileMenu.classList.remove('active'); });
+
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => { if(scrollBtn) scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; });
+        if (scrollBtn) scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && mobileMenu) mobileMenu.classList.remove('active'); });
+
+        /* ===== CONTACT FORM SUBMIT ===== */
+        const contactForm = document.getElementById('contact-form-el');
+        const toast = document.getElementById('toast');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const submitBtn = contactForm.querySelector('.form-submit');
+                const originalHTML = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                    toast.classList.add('show');
+
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                        contactForm.reset();
+                        submitBtn.innerHTML = originalHTML;
+                        submitBtn.disabled = false;
+                    }, 3200);
+                }, 1200);
+            });
+        }
+
+        /* Smooth scroll for anchor links */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 90;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                }
+            });
+        });
+    })();
+</script>
+</body>
+</html>

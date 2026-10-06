@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SOLEHOUSE Home 2 – New layout, same heat. Custom sneakers, limited drops & streetwear.">
+    <title>Home 2 | SOLEHOUSE — Custom Sneaker & Streetwear</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES ----- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F7F7F7;
+            --text-main: #0F0F0F;
+            --text-muted: #3A3A3A;
+            --card-bg: #FFFFFF;
+            --border-subtle: #E0E0E0;
+            --accent-orange: #FF4600;
+            --navbar-bg: #FFFFFF;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #F0F0F0;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0F0F0F;
+            --bg-secondary: #1A1A1A;
+            --text-main: #FFFFFF;
+            --text-muted: #B0B0B0;
+            --card-bg: #1E1E1E;
+            --border-subtle: #2E2E2E;
+            --accent-orange: #FF4600;
+            --navbar-bg: #0F0F0F;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #1E1E1E;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-main);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .section-label {
+            color: var(--accent-orange);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) { .section-title { font-size: 3rem; } }
+
+        /* ----- NAVBAR ----- */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            border-bottom: 3px solid var(--accent-orange);
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(255, 70, 0, 0.15);
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: opacity 0.2s;
+        }
+        .logo:hover { opacity: 0.8; }
+        .logo-icon {
+            width: 3rem; height: 3rem;
+            background-color: var(--bg-primary);
+            border-radius: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            border: 3px solid var(--accent-orange);
+        }
+        .logo-icon i { color: var(--accent-orange); font-size: 2rem; }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+        .logo-text span { color: var(--accent-orange); }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+        .desktop-nav { display: none; align-items: center; gap: 0.25rem; }
+        .nav-link {
+            color: var(--text-muted);
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 30px;
+        }
+        .nav-link:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .nav-link.active {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            font-weight: 800;
+        }
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%; left: 0;
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-orange);
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0; visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(255, 70, 0, 0.25);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-muted);
+            transition: 0.2s;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 500;
+        }
+        .dropdown-item:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            border-radius: 12px;
+        }
+        .dropdown-arrow { font-size: 0.7rem; transition: 0.2s; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        .navbar-right-desktop { display: none; align-items: center; gap: 0.75rem; }
+        .icon-btn {
+            width: 2.5rem; height: 2.5rem;
+            background-color: transparent;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-main);
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .icon-btn:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .login-btn {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.875rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            transition: 0.2s;
+            border: 2px solid var(--accent-orange);
+        }
+        .login-btn:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: var(--bg-primary);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 3px solid var(--accent-orange);
+        }
+        .mobile-menu-close { color: var(--text-main); font-size: 2rem; background: none; border: none; cursor: pointer; }
+        .mobile-menu-items { padding: 1.5rem; }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .mobile-menu-item i { color: var(--accent-orange); margin-right: 1rem; width: 1.75rem; }
+        .mobile-dropdown { border-bottom: 1px solid var(--border-subtle); }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none; border: none;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            padding: 1rem 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .mobile-dropdown-btn i:first-child { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+        }
+        .mobile-dropdown-content.active { max-height: 200px; padding: 0.75rem 0; }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .mobile-dropdown-content a:hover { background-color: var(--accent-orange); color: var(--pure-white); }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 600;
+        }
+        .mobile-action-item i { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-separator { margin: 1rem 0; border-top: 3px solid var(--accent-orange); }
+
+        /* ================= SECTION 1: HERO with big split + ticker ================= */
+        .hero2 {
+            background: var(--bg-primary);
+            padding-top: 90px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero2-pattern {
+            position: absolute; inset: 0;
+            background-image:
+                radial-gradient(circle at 90% 10%, rgba(255,70,0,0.08) 0px, transparent 45%),
+                radial-gradient(circle at 5% 90%, rgba(255,70,0,0.06) 0px, transparent 40%);
+            pointer-events: none;
+        }
+        .hero2-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        @media (min-width: 1024px) { .hero2-grid { grid-template-columns: 1.1fr 1fr; gap: 4rem; } }
+        .hero2-content h1 {
+            font-size: 2.75rem;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+        }
+        @media (min-width: 768px) { .hero2-content h1 { font-size: 4rem; } }
+        @media (min-width: 1024px) { .hero2-content h1 { font-size: 5rem; } }
+        .hero2-content h1 .stroke {
+            -webkit-text-stroke: 2px var(--accent-orange);
+            color: transparent;
+        }
+        .hero2-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        .hero2-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 1rem 1.75rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .btn-outline {
+            border: 2px solid var(--accent-orange);
+            color: var(--text-main);
+            padding: 1rem 1.75rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            background: transparent;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        .btn-outline:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .hero2-image {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            border-radius: 2rem;
+            overflow: hidden;
+            border: 4px solid var(--accent-orange);
+            background: var(--bg-secondary);
+        }
+        .hero2-image img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .hero2-badge {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: var(--pure-white);
+            color: var(--pure-black);
+            padding: 0.6rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hero2-badge i { color: var(--accent-orange); }
+
+        /* Ticker */
+        .ticker {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.9rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 5;
+        }
+        .ticker-track {
+            display: inline-block;
+            animation: tickerScroll 30s linear infinite;
+            font-weight: 900;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .ticker-track span {
+            margin: 0 2rem;
+        }
+        .ticker-track i { margin-right: 0.5rem; }
+        @keyframes tickerScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ================= SECTION 2: Horizontal scrolling drops ================= */
+        .hscroll-section {
+            background: var(--bg-secondary);
+            padding: 5rem 0;
+            overflow: hidden;
+        }
+        .hscroll-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .hscroll-arrows {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .arrow-btn {
+            width: 3rem; height: 3rem;
+            border-radius: 50%;
+            border: 2px solid var(--accent-orange);
+            background: transparent;
+            color: var(--accent-orange);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .arrow-btn:hover {
+            background: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .hscroll-track {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 1rem;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .hscroll-track::-webkit-scrollbar { display: none; }
+        .hscroll-card {
+            flex: 0 0 300px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 1.75rem;
+            overflow: hidden;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+        .hscroll-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-6px);
+            box-shadow: 0 18px 36px rgba(255,70,0,0.15);
+        }
+        .hscroll-card-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background: var(--bg-primary);
+        }
+        .hscroll-card-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.4s;
+        }
+        .hscroll-card:hover .hscroll-card-img img { transform: scale(1.06); }
+        .hscroll-card-body { padding: 1.25rem; }
+        .hscroll-card-body h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+        .hscroll-card-body .price { color: var(--accent-orange); font-weight: 900; font-size: 1.15rem; }
+        .hscroll-card-body .meta {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        /* ================= SECTION 3: Bento grid ================= */
+        .bento-section {
+            background: var(--bg-primary);
+            padding: 5rem 0;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+            margin-top: 3rem;
+        }
+        @media (min-width: 640px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: 220px;
+            }
+        }
+        .bento-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2rem;
+            transition: 0.25s;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .bento-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-4px);
+        }
+        .bento-card.span-2col { grid-column: span 2; }
+        .bento-card.span-2row { grid-row: span 2; }
+        @media (max-width: 1023px) {
+            .bento-card.span-2col, .bento-card.span-2row { grid-column: auto; grid-row: auto; }
+        }
+        .bento-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+        .bento-card p {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .bento-icon {
+            width: 3.5rem; height: 3.5rem;
+            background: rgba(255,70,0,0.1);
+            border-radius: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-orange);
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        .bento-card.dark {
+            background: var(--accent-orange);
+            color: var(--pure-white);
+            border-color: var(--accent-orange);
+        }
+        .bento-card.dark h3,
+        .bento-card.dark p { color: var(--pure-white); }
+        .bento-card.dark .bento-icon {
+            background: rgba(255,255,255,0.2);
+            color: var(--pure-white);
+        }
+        .bento-card.dark .bento-tag {
+            background: rgba(255,255,255,0.2);
+            color: var(--pure-white);
+            padding: 0.3rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        .bento-img {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .bento-img img { width: 100%; height: 100%; object-fit: cover; }
+        .bento-img::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(15,15,15,0.85), rgba(15,15,15,0.2));
+        }
+        .bento-card.has-bg { justify-content: flex-end; }
+        .bento-card.has-bg h3,
+        .bento-card.has-bg p { position: relative; z-index: 1; color: var(--pure-white); }
+
+        /* ================= SECTION 4: Marquee brand band ================= */
+        .marquee-section {
+            background: var(--pure-black);
+            padding: 3rem 0;
+            overflow: hidden;
+            border-top: 3px solid var(--accent-orange);
+            border-bottom: 3px solid var(--accent-orange);
+        }
+        .marquee-track {
+            display: flex;
+            animation: marqueeScroll 25s linear infinite;
+            white-space: nowrap;
+        }
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0 2.5rem;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--pure-white);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            flex-shrink: 0;
+        }
+        .marquee-item i {
+            color: var(--accent-orange);
+            font-size: 2rem;
+        }
+        .marquee-item.outline {
+            -webkit-text-stroke: 2px var(--accent-orange);
+            color: transparent;
+        }
+        @keyframes marqueeScroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ================= SECTION 5: Testimonials slider ================= */
+        .testimonials-section {
+            background: var(--bg-secondary);
+            padding: 5rem 0;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        @media (min-width: 768px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .testimonials-grid { grid-template-columns: repeat(3, 1fr); } }
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2rem;
+            transition: 0.25s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .testimonial-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-4px);
+        }
+        .testimonial-card.featured {
+            background: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+        .testimonial-card.featured .stars,
+        .testimonial-card.featured .quote,
+        .testimonial-card.featured .author-info h4,
+        .testimonial-card.featured .author-info span { color: var(--pure-white); }
+        .testimonial-card.featured .author-avatar { border-color: var(--pure-white); }
+        .stars { color: var(--accent-orange); margin-bottom: 1rem; font-size: 0.95rem; }
+        .quote {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.25rem;
+        }
+        .testimonial-card.featured .author-info { border-top-color: rgba(255,255,255,0.25); }
+        .author-avatar {
+            width: 2.75rem; height: 2.75rem;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid var(--accent-orange);
+            flex-shrink: 0;
+        }
+        .author-info h4 { font-size: 1rem; margin-bottom: 0.1rem; }
+        .author-info span { color: var(--text-muted); font-size: 0.8rem; font-weight: 600; }
+
+        /* ================= SECTION 6: CTA with inline form ================= */
+        .cta-inline {
+            background: var(--bg-primary);
+            padding: 5rem 0;
+        }
+        .cta-inline-box {
+            background: var(--bg-secondary);
+            border: 3px solid var(--accent-orange);
+            border-radius: 2.5rem;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .cta-inline-box {
+                grid-template-columns: 1.3fr 1fr;
+                padding: 4rem 3rem;
+            }
+        }
+        .cta-inline-box h2 {
+            font-size: 2.25rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) { .cta-inline-box h2 { font-size: 3rem; } }
+        .cta-inline-box p {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        .cta-inline-form {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .cta-inline-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem 1.5rem;
+            border-radius: 9999px;
+            border: 2px solid var(--border-subtle);
+            background: var(--bg-primary);
+            color: var(--text-main);
+            font-family: inherit;
+            font-weight: 500;
+            outline: none;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .cta-inline-form input:focus {
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 4px rgba(255,70,0,0.1);
+        }
+        .cta-inline-form input::placeholder { color: var(--text-muted); }
+        .cta-inline-form button {
+            background: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            font-size: 0.95rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .cta-inline-form button:hover {
+            background: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .cta-note {
+            margin-top: 1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .cta-note i { color: var(--accent-orange); }
+
+        /* ================= FOOTER ================= */
+        .footer {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            padding: 4rem 0 2rem 0;
+            border-top: 3px solid var(--accent-orange);
+        }
+        .footer-grid {
+            display: grid;
+            gap: 2.5rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 3rem;
+        }
+        @media (min-width:768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
+        .footer-logo-block { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer .logo { margin-bottom: 0.5rem; }
+        .footer-heading {
+            color: var(--accent-orange);
+            margin-bottom: 1.25rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a {
+            color: var(--text-muted);
+            transition: 0.2s;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .footer-links a:hover { color: var(--accent-orange); padding-left: 4px; }
+        .footer-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            border: 2px solid var(--accent-orange);
+            background: var(--bg-primary);
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            font-family: inherit;
+            outline: none;
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .footer-btn:hover {
+            background: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .copyright {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        #scroll-top {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem;
+            background-color: var(--accent-orange); color: var(--pure-white); border-radius: 50%; border: 2px solid var(--accent-orange);
+            cursor: pointer; display: none; z-index: 100;
+        }
+        #scroll-top:hover { background: transparent; color: var(--text-main); }
+
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up { animation: fadeInUp 0.7s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <span class="nav-link active" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="faq.html" class="nav-link">Faq</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-moon" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="login-btn"><i class="fas fa-map-marker-alt"></i> Visit Store</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home</span> <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a> <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="services.html" class="mobile-menu-item"><i class="fas fa-camera"></i> Services</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> Faq</a>
+        <a href="pricing.html" class="mobile-menu-item"><i class="fas fa-tag"></i> Pricing</a>
+        <a href="gallery.html" class="mobile-menu-item"><i class="fas fa-images"></i> Gallery</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" onclick="window.location.href='contact.html'"><i class="fas fa-map-marker-alt"></i> Visit Store</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-exchange-alt"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-moon" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- ================= SECTION 1: HERO2 with outlined text + ticker ================= -->
+<section class="hero2">
+    <div class="hero2-pattern"></div>
+    <div class="container" style="padding-bottom: 5rem;">
+        <div class="hero2-grid">
+            <div class="hero2-content fade-in-up">
+                <span class="section-label"><i class="fas fa-bolt"></i> NEW SEASON · NEW HEAT</span>
+                <h1>
+                    STEP INTO<br>
+                    <span class="stroke">SOMETHING</span><br>
+                    <span style="color: var(--accent-orange);">UNREAL.</span>
+                </h1>
+                <p>Hand-painted customs. Limited drops. Streetwear that hits different. Welcome to the SOLEHOUSE — where every pair is a statement.</p>
+                <div class="hero2-btns">
+                    <a href="gallery.html" class="btn-primary"><i class="fas fa-fire"></i> Shop the Drop</a>
+                    <a href="contact.html" class="btn-outline"><i class="fas fa-paint-brush"></i> Custom Order</a>
+                </div>
+            </div>
+            <div class="hero2-image fade-in-up">
+                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?q=80&w=2070&auto=format&fit=crop" alt="Custom sneaker hero" loading="lazy">
+                <div class="hero2-badge"><i class="fas fa-star"></i> Drop 12 · Live Now</div>
+            </div>
+        </div>
+    </div>
+    <!-- Ticker -->
+    <div class="ticker">
+        <div class="ticker-track">
+            <span><i class="fas fa-fire"></i> Limited Drops</span>
+            <span><i class="fas fa-paint-brush"></i> Hand-Painted Customs</span>
+            <span><i class="fas fa-bolt"></i> 24H Turnaround</span>
+            <span><i class="fas fa-globe"></i> Worldwide Shipping</span>
+            <span><i class="fas fa-fire"></i> Limited Drops</span>
+            <span><i class="fas fa-paint-brush"></i> Hand-Painted Customs</span>
+            <span><i class="fas fa-bolt"></i> 24H Turnaround</span>
+            <span><i class="fas fa-globe"></i> Worldwide Shipping</span>
+        </div>
+    </div>
+</section>
+
+<!-- ================= SECTION 2: Horizontal scrolling drops ================= -->
+<section class="hscroll-section">
+    <div class="container">
+        <div class="hscroll-header">
+            <div>
+                <span class="section-label">JUST LANDED</span>
+                <h2 class="section-title">This Week's Heat</h2>
+                <p style="color: var(--text-muted); font-weight: 500; max-width: 500px;">Scroll through the freshest pairs — grab them before they're gone.</p>
+            </div>
+            <div class="hscroll-arrows">
+                <button class="arrow-btn" id="scroll-left" aria-label="Scroll left"><i class="fas fa-arrow-left"></i></button>
+                <button class="arrow-btn" id="scroll-right" aria-label="Scroll right"><i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="hscroll-track" id="hscroll-track">
+
+            <div class="hscroll-card">
+                <div class="hscroll-card-img"><img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop" alt="AJ1 Chicago" loading="lazy"></div>
+                <div class="hscroll-card-body">
+                    <h3>AJ1 "Chicago" Custom</h3>
+                    <p class="meta">Hand-painted · Limited</p>
+                    <div class="price">$499</div>
+                </div>
+            </div>
+
+            <div class="hscroll-card">
+                <div class="hscroll-card-img"><img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=2070&auto=format&fit=crop" alt="Dunk Low Panda" loading="lazy"></div>
+                <div class="hscroll-card-body">
+                    <h3>Dunk Low "Panda"</h3>
+                    <p class="meta">Premium suede · Unisex</p>
+                    <div class="price">$249</div>
+                </div>
+            </div>
+
+            <div class="hscroll-card">
+                <div class="hscroll-card-img"><img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2070&auto=format&fit=crop" alt="Yeezy Boost 350" loading="lazy"></div>
+                <div class="hscroll-card-body">
+                    <h3>Yeezy Boost 350 V2</h3>
+                    <p class="meta">Primeknit · Boost</p>
+                    <div class="price">$399</div>
+                </div>
+            </div>
+
+            <div class="hscroll-card">
+                <div class="hscroll-card-img"><img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=2070&auto=format&fit=crop" alt="AJ1 Retro" loading="lazy"></div>
+                <div class="hscroll-card-body">
+                    <h3>AJ1 Retro High OG</h3>
+                    <p class="meta">Signed · Numbered</p>
+                    <div class="price">$549</div>
+                </div>
+            </div>
+
+            <div class="hscroll-card">
+                <div class="hscroll-card-img"><img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=2070&auto=format&fit=crop" alt="Airbrush Custom" loading="lazy"></div>
+                <div class="hscroll-card-body">
+                    <h3>Airbrush Series 04</h3>
+                    <p class="meta">Freehand · Sealed</p>
+                    <div class="price">$379</div>
+                </div>
+            </div>
+
+            <div class="hscroll-card">
+                <div class="hscroll-card-img"><img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2070&auto=format&fit=crop" alt="Custom Splatter" loading="lazy"></div>
+                <div class="hscroll-card-body">
+                    <h3>Splatter Series</h3>
+                    <p class="meta">Abstract · Matte</p>
+                    <div class="price">$419</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= SECTION 3: Bento grid ================= -->
+<section class="bento-section">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <span class="section-label">THE SOLEHOUSE EDGE</span>
+            <h2 class="section-title">Built Different</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Four reasons why sneakerheads keep coming back.</p>
+        </div>
+        <div class="bento-grid">
+
+            <div class="bento-card span-2col span-2row has-bg fade-in-up">
+                <div class="bento-img">
+                    <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=2070&auto=format&fit=crop" alt="Studio" loading="lazy">
+                </div>
+                <h3 style="font-size: 2rem;">Hand-painted in Chicago</h3>
+                <p>Every custom is painted in our studio, one brushstroke at a time. No outsourcing. No shortcuts.</p>
+            </div>
+
+            <div class="bento-card fade-in-up">
+                <div class="bento-icon"><i class="fas fa-bolt"></i></div>
+                <h3>24h Turnaround</h3>
+                <p>Elite orders painted & shipped in a single day.</p>
+            </div>
+
+            <div class="bento-card dark fade-in-up">
+                <span class="bento-tag">Exclusive</span>
+                <h3 style="margin-top: 1rem; font-size: 1.5rem;">Members Get 48h Early Access</h3>
+                <p>Skip the line on every drop.</p>
+            </div>
+
+            <div class="bento-card fade-in-up">
+                <div class="bento-icon"><i class="fas fa-gem"></i></div>
+                <h3>Archival Quality</h3>
+                <p>Premium paints that flex and last for years.</p>
+            </div>
+
+            <div class="bento-card fade-in-up">
+                <div class="bento-icon"><i class="fas fa-globe"></i></div>
+                <h3>Worldwide Shipping</h3>
+                <p>From Chicago to your doorstep, anywhere on earth.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= SECTION 4: Marquee brand band ================= -->
+<section class="marquee-section">
+    <div class="marquee-track">
+        <div class="marquee-item"><i class="fas fa-shoe-prints"></i> SOLEHOUSE</div>
+        <div class="marquee-item outline"><i class="fas fa-fire"></i> CUSTOM KICKS</div>
+        <div class="marquee-item"><i class="fas fa-bolt"></i> LIMITED DROPS</div>
+        <div class="marquee-item outline"><i class="fas fa-star"></i> STREETWEAR</div>
+        <div class="marquee-item"><i class="fas fa-shoe-prints"></i> SOLEHOUSE</div>
+        <div class="marquee-item outline"><i class="fas fa-fire"></i> CUSTOM KICKS</div>
+        <div class="marquee-item"><i class="fas fa-bolt"></i> LIMITED DROPS</div>
+        <div class="marquee-item outline"><i class="fas fa-star"></i> STREETWEAR</div>
+    </div>
+</section>
+
+<!-- ================= SECTION 5: Testimonials ================= -->
+<section class="testimonials-section">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <span class="section-label">REAL TALK</span>
+            <h2 class="section-title">What Sneakerheads Say</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">3,200+ pairs shipped. Zero regrets.</p>
+        </div>
+        <div class="testimonials-grid">
+
+            <div class="testimonial-card fade-in-up">
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="quote">"I sent in my beat-up Chicago 1s and got back a masterpiece. The paint job is unreal — people stop me on the street to ask about them."</p>
+                <div class="author-info">
+                    <div class="author-avatar" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop');"></div>
+                    <div>
+                        <h4>Marcus W.</h4>
+                        <span>Collector · Chicago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card featured fade-in-up">
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="quote">"Ordered custom kicks for my wedding party. SOLEHOUSE delivered six pairs in a week — every one a one-of-one. Absolute legends."</p>
+                <div class="author-info">
+                    <div class="author-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop');"></div>
+                    <div>
+                        <h4>Elen P.</h4>
+                        <span>Bride · New York</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card fade-in-up">
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="quote">"The attention to detail is next level. Digital proof, unlimited revisions, free touch-up kit — they think of everything."</p>
+                <div class="author-info">
+                    <div class="author-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop');"></div>
+                    <div>
+                        <h4>Saran M.</h4>
+                        <span>Sneakerhead · LA</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= SECTION 6: CTA with inline form ================= -->
+<section class="cta-inline">
+    <div class="container">
+        <div class="cta-inline-box fade-in-up">
+            <div>
+                <span class="section-label">GET 10% OFF</span>
+                <h2>Drop your email. <span style="color: var(--accent-orange);">Get the heat first.</span></h2>
+                <p>Members get early access to drops, exclusive discounts, and behind-the-scenes content. No spam — just sneakers.</p>
+            </div>
+            <div>
+                <form class="cta-inline-form" id="cta-form">
+                    <input type="email" placeholder="you@example.com" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                </form>
+                <p class="cta-note"><i class="fas fa-lock"></i> We respect your privacy. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-logo-block">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+                    <div>
+                        <div class="logo-text">SOLE<span>HOUSE</span></div>
+                        <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+                    </div>
+                </a>
+                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem; max-width: 220px;">From limited drops to one-of-one customs — we bring the heat to your feet and your wardrobe.</p>
+            </div>
+            <div>
+                <h3 class="footer-heading">Quick links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="faq.html">Faq</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Stay Updated</h3>
+                <input class="footer-input" placeholder="Your email address">
+                <button class="footer-btn">Subscribe</button>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <i class="fab fa-instagram" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-youtube" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-tiktok" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <i class="fas fa-copyright"></i> 2025 SOLEHOUSE — White · Black · Hype Orange. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopThemeBtn = document.getElementById('desktop-theme-toggle');
+        const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        let savedTheme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', savedTheme);
+        updateIcons(savedTheme);
+
+        function updateIcons(theme) {
+            const iconClass = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (desktopIcon) desktopIcon.className = iconClass;
+            if (mobileIcon) mobileIcon.className = iconClass;
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcons(newTheme);
+        }
+
+        if (desktopThemeBtn) desktopThemeBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if (desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if (mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id)?.classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id)?.classList.toggle('active');
+        };
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        if (closeBtn) closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        if (mobileMenu) mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) mobileMenu.classList.remove('active'); });
+
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => { if(scrollBtn) scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; });
+        if (scrollBtn) scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && mobileMenu) mobileMenu.classList.remove('active'); });
+
+        /* ===== Horizontal scroll arrows ===== */
+        const track = document.getElementById('hscroll-track');
+        const leftBtn = document.getElementById('scroll-left');
+        const rightBtn = document.getElementById('scroll-right');
+
+        if (track && leftBtn && rightBtn) {
+            const scrollAmount = 340;
+            leftBtn.addEventListener('click', () => {
+                track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+            rightBtn.addEventListener('click', () => {
+                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+        }
+
+        /* ===== CTA form ===== */
+        const ctaForm = document.getElementById('cta-form');
+        if (ctaForm) {
+            ctaForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = ctaForm.querySelector('button');
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Subscribed!';
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    ctaForm.reset();
+                }, 2000);
+            });
+        }
+    })();
+</script>
+</body>
+</html>

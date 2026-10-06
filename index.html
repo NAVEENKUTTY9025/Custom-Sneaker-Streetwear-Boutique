@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Custom Sneaker & Streetwear Boutique – exclusive drops, custom kicks & premium apparel">
+    <title>SOLEHOUSE | Custom Sneaker & Streetwear Boutique</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES (White / Street Black / Hype Orange) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            /* Light mode (gallery white) */
+            --bg-primary: #FFFFFF;           /* Crisp White - 70% */
+            --bg-secondary: #F7F7F7;          /* subtle off-white for sections */
+            --text-main: #0F0F0F;             /* Street Black */
+            --text-muted: #3A3A3A;            /* dark gray for secondary text */
+            --card-bg: #FFFFFF;
+            --border-subtle: #E0E0E0;
+            --accent-orange: #FF4600;         /* Hype Orange - 10% */
+            --navbar-bg: #FFFFFF;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #F0F0F0;
+            --btn-hover-bg: #0F0F0F;
+            --btn-hover-text: #FFFFFF;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0F0F0F;            /* Street Black background */
+            --bg-secondary: #1A1A1A;
+            --text-main: #FFFFFF;
+            --text-muted: #B0B0B0;
+            --card-bg: #1E1E1E;
+            --border-subtle: #2E2E2E;
+            --accent-orange: #FF4600;          /* Hype Orange stays vibrant */
+            --navbar-bg: #0F0F0F;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #1E1E1E;
+            --btn-hover-bg: #FFFFFF;
+            --btn-hover-text: #0F0F0F;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-main);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        a { text-decoration: none; color: inherit; }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* ----- NAVBAR (Street Black / Hype Orange accent) ----- */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            border-bottom: 3px solid var(--accent-orange);
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(255, 70, 0, 0.15);
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        /* LOGO — same structure, brand identity */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: opacity 0.2s;
+        }
+        .logo:hover { opacity: 0.8; }
+        .logo-icon {
+            width: 3rem;
+            height: 3rem;
+            background-color: var(--bg-primary);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--accent-orange);
+        }
+        .logo-icon i { color: var(--accent-orange); font-size: 2rem; }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+        .logo-text span { color: var(--accent-orange); }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+        /* desktop nav */
+        .desktop-nav { display: none; align-items: center; gap: 0.25rem; }
+        .nav-link {
+            color: var(--text-muted);
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 30px;
+        }
+        .nav-link:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .nav-link.active {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            font-weight: 800;
+        }
+        /* dropdown */
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-orange);
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(255, 70, 0, 0.25);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-muted);
+            transition: 0.2s;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 500;
+        }
+        .dropdown-item:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            border-radius: 12px;
+        }
+        .dropdown-arrow { font-size: 0.7rem; transition: 0.2s; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        /* desktop right */
+        .navbar-right-desktop { display: none; align-items: center; gap: 0.75rem; }
+        .icon-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .icon-btn:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .login-btn {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            border: 2px solid var(--accent-orange);
+        }
+        .login-btn:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        /* mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 3px solid var(--accent-orange);
+        }
+        .mobile-menu-close { color: var(--text-main); font-size: 2rem; background: none; border: none; cursor: pointer; }
+        .mobile-menu-items { padding: 1.5rem; }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .mobile-menu-item i { color: var(--accent-orange); margin-right: 1rem; width: 1.75rem; }
+        .mobile-dropdown { border-bottom: 1px solid var(--border-subtle); }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            padding: 1rem 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .mobile-dropdown-btn i:first-child { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+        }
+        .mobile-dropdown-content.active { max-height: 200px; padding: 0.75rem 0; }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .mobile-dropdown-content a:hover { background-color: var(--accent-orange); color: var(--pure-white); }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 600;
+        }
+        .mobile-action-item i { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-separator { margin: 1rem 0; border-top: 3px solid var(--accent-orange); }
+
+        /* ----- HERO (sneaker gallery vibe) ----- */
+        .hero {
+            background-color: var(--bg-primary);
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+            padding-top: 80px;
+        }
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 20% 30%, rgba(255,70,0,0.06) 0px, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-grid {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1fr 1fr; } }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+        @media (min-width: 640px) { .hero-title { font-size: 3rem; } }
+        @media (min-width: 768px) { .hero-title { font-size: 3.75rem; } }
+        @media (min-width: 1024px) { .hero-title { font-size: 4.5rem; } }
+        .hero-title span { color: var(--accent-orange); }
+        .hero-text { font-size: 1.125rem; color: var(--text-muted); margin-bottom: 2rem; font-weight: 500; }
+        .btn-group { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .btn-primary {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 1rem 1.75rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .btn-outline {
+            border: 2px solid var(--accent-orange);
+            color: var(--text-main);
+            padding: 1rem 1.75rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+            background: transparent;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .stats { display: flex; gap: 2rem; margin-top: 2.5rem; }
+        .stat-number { font-size: 2rem; font-weight: 900; color: var(--accent-orange); line-height: 1; }
+        .stat-label { font-size: 0.875rem; display: block; color: var(--text-muted); font-weight: 600; }
+        .hero-image {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 4px solid var(--accent-orange);
+            min-height: 400px;
+            width: 100%;
+            background-color: var(--bg-secondary);
+        }
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ----- CARDS & SECTIONS ----- */
+        .service-card { display: flex; flex-direction: column; height: 100%; }
+        .service-card p { flex-grow: 1; }
+        .service-card, .model-card, .drone-card, .preview-card, .team-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2rem;
+            transition: 0.2s;
+        }
+        .service-card:hover, .model-card:hover { border-color: var(--accent-orange); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(255,70,0,0.12); }
+        .service-icon {
+            width: 5rem; height: 5rem; margin: 0 auto 1.5rem;
+            background: rgba(255,70,0,0.08);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: var(--accent-orange);
+        }
+        .models-grid, .services-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+        @media (min-width:768px) { .services-grid, .models-grid { grid-template-columns: repeat(3,1fr); } }
+        .model-card img {
+            width: 100%; height: 200px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem;
+            filter: grayscale(0%);
+            border: 1px solid var(--border-subtle);
+        }
+        .model-price { font-size: 2rem; font-weight: 900; color: var(--accent-orange); margin: 1rem 0; }
+        .spec-list { list-style: none; margin: 1rem 0; }
+        .spec-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border-subtle); color: var(--text-muted); font-weight: 500; }
+        .spec-list i { color: var(--accent-orange); margin-right: 0.5rem; }
+
+        .steps-grid {
+            display: grid; gap: 2rem;
+            grid-template-columns: repeat(1,1fr);
+        }
+        @media (min-width:768px) { .steps-grid { grid-template-columns: repeat(4,1fr); } }
+        .step-item { text-align: center; }
+        .step-circle {
+            width: 5rem; height: 5rem; background-color: var(--bg-secondary); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
+            border: 3px solid var(--accent-orange); font-size: 2rem; color: var(--accent-orange);
+        }
+
+        .preview-card {
+            background: var(--card-bg);
+            border: 3px solid var(--accent-orange);
+            padding: 2rem;
+        }
+        .badge {
+            background-color: var(--accent-orange); color: var(--pure-white);
+            padding: 0.375rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 800;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .feature-item {
+            display: flex; gap: 1rem; padding: 1rem; background-color: rgba(255,70,0,0.04);
+            border-radius: 1rem; align-items: center; margin-bottom: 1rem;
+        }
+        .feature-icon {
+            width: 3rem; height: 3rem; background-color: rgba(255,70,0,0.1);
+            border-radius: 0.75rem; display: flex; align-items: center; justify-content: center;
+            color: var(--accent-orange); font-size: 1.25rem;
+        }
+        .price { font-size: 2rem; font-weight: 900; color: var(--accent-orange); }
+        .price-old { text-decoration: line-through; opacity: 0.6; color: var(--text-muted); }
+
+        .team-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+        @media (min-width:640px){ .team-grid { grid-template-columns: repeat(4,1fr); } }
+        .team-card { padding: 1rem; text-align: center; border: 2px solid var(--border-subtle); }
+        .team-card:hover { border-color: var(--accent-orange); }
+        .team-img {
+            width: 100%; aspect-ratio: 1/1; border-radius: 50%; 
+            background-size: cover; background-position: center; border: 3px solid var(--accent-orange);
+        }
+
+        .newsletter {
+            background-color: var(--bg-secondary); padding: 5rem 0; border-top: 3px solid var(--accent-orange);
+            border-bottom: 3px solid var(--accent-orange); position: relative;
+        }
+        .newsletter-title { font-size: 3rem; color: var(--text-main); }
+        .newsletter-text { color: var(--text-muted); font-weight: 500; }
+        .newsletter-input {
+            flex: 1; padding: 1rem 1.5rem; border-radius: 9999px; border: 3px solid var(--accent-orange);
+            background-color: var(--bg-primary); color: var(--text-main); outline: none;
+            font-weight: 500;
+        }
+        .newsletter-input::placeholder { color: var(--text-muted); }
+        .newsletter-btn {
+            background-color: var(--accent-orange); color: var(--pure-white); padding: 1rem 2rem; border-radius: 9999px;
+            font-weight: 800; border: 3px solid var(--accent-orange); cursor: pointer;
+        }
+        .newsletter-btn:hover { background-color: transparent; color: var(--text-main); border-color: var(--text-main); }
+
+        /* ----- FOOTER (Street Black / Hype Orange) ----- */
+        .footer {
+            background-color: var(--bg-primary); 
+            color: var(--text-main); 
+            padding: 4rem 0 2rem 0; 
+            border-top: 3px solid var(--accent-orange);
+        }
+        .footer-grid { 
+            display: grid; 
+            gap: 2.5rem; 
+            grid-template-columns: 1fr; 
+            margin-bottom: 3rem;
+        }
+        @media (min-width:768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
+        .footer-logo-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .footer .logo {
+            margin-bottom: 0.5rem;
+        }
+        .footer-heading { 
+            color: var(--accent-orange); 
+            margin-bottom: 1.25rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .footer-links { 
+            list-style: none; 
+        }
+        .footer-links li { 
+            margin-bottom: 0.75rem; 
+        }
+        .footer-links a { 
+            color: var(--text-muted); 
+            transition: 0.2s; 
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .footer-links a:hover { 
+            color: var(--accent-orange); 
+            padding-left: 4px;
+        }
+        .footer-input {
+            width: 100%; 
+            padding: 0.75rem 1rem; 
+            border-radius: 9999px; 
+            border: 2px solid var(--accent-orange);
+            background: var(--bg-primary); 
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        .footer-btn {
+            width: 100%; 
+            background-color: var(--accent-orange); 
+            color: var(--pure-white); 
+            padding: 0.75rem 1rem;
+            border-radius: 9999px; 
+            font-weight: 800; 
+            border: 2px solid var(--accent-orange); 
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .footer-btn:hover { 
+            background: transparent; 
+            color: var(--text-main); 
+            border-color: var(--text-main); 
+        }
+        .copyright { 
+            border-top: 1px solid var(--border-subtle); 
+            padding-top: 1.5rem; 
+            text-align: center; 
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        #scroll-top {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem;
+            background-color: var(--accent-orange); color: var(--pure-white); border-radius: 50%; border: 2px solid var(--accent-orange);
+            cursor: pointer; display: none; z-index: 100;
+        }
+        #scroll-top:hover { background: transparent; color: var(--text-main); }
+
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up { animation: fadeInUp 0.7s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Sneaker-specific utility */
+        .limited-badge {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+        .sold-out {
+            background-color: var(--text-main);
+            color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR (Street Black & Hype Orange) – same structural logo as footer -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <span class="nav-link active" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="faq.html" class="nav-link">Faq</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+           
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-moon" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="login-btn"><i class="fas fa-map-marker-alt"></i> Visit Store</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home</span> <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a> <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="services.html" class="mobile-menu-item"><i class="fas fa-camera"></i> Services</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> Faq</a>
+        <a href="pricing.html" class="mobile-menu-item"><i class="fas fa-tag"></i> Pricing</a>
+        <a href="gallery.html" class="mobile-menu-item"><i class="fas fa-images"></i> Gallery</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+       
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" onclick="window.location.href='contact.html'"><i class="fas fa-map-marker-alt"></i> Visit Store</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-exchange-alt"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-moon" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- HERO with custom sneaker image -->
+<section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="container relative z-10">
+        <div class="hero-grid">
+            <div class="fade-in-up order-2 lg:order-1">
+                <span style="color: var(--accent-orange); font-weight: 800; letter-spacing: 0.05em; display: block; margin-bottom: 0.75rem; text-transform: uppercase;"><i class="fas fa-fire"></i> LIMITED DROPS · CUSTOM KICKS</span>
+                <h1 class="hero-title">YOUR <span>CANVAS.</span><br>YOUR CROWN.</h1>
+                <p class="hero-text">Exclusive sneakers, hand-painted customs & premium streetwear. Step into the spotlight.</p>
+                <div class="btn-group">
+                    <a href="#services" class="btn-primary"><i class="fas fa-play"></i> Shop Drops</a>
+                    <a href="#booking" class="btn-outline"><i class="fas fa-calendar"></i> Custom Order</a>
+                </div>
+                <div class="stats">
+                    <div><span class="stat-number">3,200+</span><span class="stat-label">Pairs Sold</span></div>
+                    <div><span class="stat-number">98%</span><span class="stat-label">Happy Sneakerheads</span></div>
+                    <div><span class="stat-number">24H</span><span class="stat-label">Custom Turnaround</span></div>
+                </div>
+            </div>
+           <div class="hero-image order-1 lg:order-2" style="width:100%; height:100%;">
+            <!-- placehold.co fallback if images missing -->
+            <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Custom sneaker on display"
+                 style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES (renamed for sneaker boutique) -->
+<section id="services" style="background: var(--bg-secondary); padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align:center; margin-bottom:3.5rem;">
+            <span style="color:var(--accent-orange); font-weight:800; text-transform:uppercase; letter-spacing:1px;">what we offer</span>
+            <h2 style="font-size:2.5rem; margin:1rem 0;">Custom Sneaker & Streetwear</h2>
+            <p style="color:var(--text-muted);">Custom kicks, limited drops, apparel — all curated for the culture</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Custom Sneaker Art</h3>
+                <p style="color:var(--text-muted); margin:1rem 0;">Hand-painted, airbrushed & fully bespoke designs</p>
+                <a href="#" style="color:var(--accent-orange); font-weight:700;">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-box-open"></i></div>
+                <h3>Limited Drops</h3>
+                <p style="color:var(--text-muted); margin:1rem 0;">Exclusive sneakers & streetwear capsules</p>
+                <a href="#" style="color:var(--accent-orange); font-weight:700;">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-tshirt"></i></div>
+                <h3>Streetwear Apparel</h3>
+                <p style="color:var(--text-muted); margin:1rem 0;">Hoodies, tees & accessories with attitude</p>
+                <a href="#" style="color:var(--accent-orange); font-weight:700;">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FLEET (now "Featured Drops" – sneakers) -->
+<section style="background:var(--bg-primary); padding:5rem 0;">
+    <div class="container">
+        <div style="text-align:center; margin-bottom:3.5rem;">
+            <span style="color:var(--accent-orange); font-weight:800; text-transform:uppercase; letter-spacing:1px;">HOT RIGHT NOW</span>
+            <h2 style="font-size:2.5rem;">Featured Drops</h2>
+        </div>
+        <div class="models-grid">
+            <div class="model-card">
+                <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=2070&auto=format&fit=crop" alt="Air Jordan 1 Custom">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3>Air Jordan 1 "Chicago"</h3>
+                    <span class="limited-badge">Limited</span>
+                </div>
+                <p style="color:var(--text-muted);">Hand-painted custom</p>
+                <div class="model-price">$499<span style="font-size:1rem; color:var(--text-muted);">/pair</span></div>
+                <ul class="spec-list"><li><i class="fas fa-check"></i> Full-grain leather</li><li><i class="fas fa-check"></i> Signed by artist</li></ul>
+                <a href="#" class="btn-primary" style="display:block; text-align:center;">Add to Cart</a>
+            </div>
+            <div class="model-card">
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=2070&auto=format&fit=crop" alt="Nike Dunk Low">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3>Nike Dunk Low "Panda"</h3>
+                    <span class="limited-badge">Sold Out</span>
+                </div>
+                <p style="color:var(--text-muted);">Streetwear essential</p>
+                <div class="model-price">$249<span style="font-size:1rem; color:var(--text-muted);">/pair</span></div>
+                <ul class="spec-list"><li><i class="fas fa-check"></i> Premium suede</li><li><i class="fas fa-check"></i> Unisex sizing</li></ul>
+                <a href="#" class="btn-primary" style="display:block; text-align:center; background:var(--text-main); border-color:var(--text-main);">Notify Me</a>
+            </div>
+            <div class="model-card">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2070&auto=format&fit=crop" alt="Adidas Yeezy">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3>Yeezy Boost 350 V2</h3>
+                    <span class="limited-badge">New</span>
+                </div>
+                <p style="color:var(--text-muted);">Yeezy season essential</p>
+                <div class="model-price">$399<span style="font-size:1rem; color:var(--text-muted);">/pair</span></div>
+                <ul class="spec-list"><li><i class="fas fa-check"></i> Primeknit upper</li><li><i class="fas fa-check"></i> Boost cushioning</li></ul>
+                <a href="#" class="btn-primary" style="display:block; text-align:center;">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM (creative team / pilots replaced) -->
+<section style="background:var(--bg-secondary); padding:4rem 0;">
+    <div class="container">
+        <h2 style="font-size:3rem; text-align:center; margin-bottom:2.5rem;">
+            Meet the creators
+        </h2>
+        <div class="team-grid" style="margin-top:1rem;">
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&h=800&fit=crop&crop=faces');"></div>
+                <h3>James Chen</h3>
+                <p style="color:var(--accent-orange); font-weight:600;">Lead Designer</p>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&h=800&fit=crop&crop=faces');"></div>
+                <h3>Saran M.</h3>
+                <p style="color:var(--accent-orange); font-weight:600;">Custom Artist</p>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&h=800&fit=crop&crop=faces');"></div>
+                <h3>Marcus W.</h3>
+                <p style="color:var(--accent-orange); font-weight:600;">Sneaker Curator</p>
+            </div>
+            <div class="team-card">
+                <div class="team-img" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&h=800&fit=crop&crop=faces');"></div>
+                <h3>Elen P.</h3>
+                <p style="color:var(--accent-orange); font-weight:600;">Stylist</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA BANNER (Hype Orange) -->
+<section style="background: var(--accent-orange); padding:4rem 0;">
+    <div style="max-width:800px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <h2 style="font-size:3rem; color:var(--pure-white); margin-bottom:0.5rem; text-align:center;">
+            Ready to stand out?
+        </h2>
+        <p style="color:var(--pure-white); margin:0; font-weight:500;">
+            10% off your first custom order
+        </p>
+        <div style="display:flex; gap:1rem; justify-content:center; align-items:center; margin-top:2rem; flex-wrap:wrap;">
+            <a href="gallery.html" class="btn-primary" 
+               style="background:var(--pure-black); color:var(--pure-white); border-color:var(--pure-black);">
+               Shop Now
+            </a>
+            <a href="contact.html" class="btn-outline" 
+               style="border-color:var(--pure-white); color:var(--pure-white);">
+               Contact
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER (matching logo exactly like navbar) -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Left column with exact same logo + tagline -->
+            <div class="footer-logo-block">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+                    <div>
+                        <div class="logo-text">SOLE<span>HOUSE</span></div>
+                        <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+                    </div>
+                </a>
+                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem; max-width: 220px;">From limited drops to one-of-one customs — we bring the heat to your feet and your wardrobe.</p>
+            </div>
+            <div>
+                <h3 class="footer-heading">Quick links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="faq.html">Faq</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Stay Updated</h3>
+                <input class="footer-input" placeholder="Your email address">
+                <button class="footer-btn">Subscribe</button>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <i class="fab fa-instagram" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-youtube" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-tiktok" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <i class="fas fa-copyright"></i> 2025 SOLEHOUSE — White · Black · Hype Orange. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopThemeBtn = document.getElementById('desktop-theme-toggle');
+        const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        let savedTheme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', savedTheme);
+        updateIcons(savedTheme);
+
+        function updateIcons(theme) {
+            const iconClass = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (desktopIcon) desktopIcon.className = iconClass;
+            if (mobileIcon) mobileIcon.className = iconClass;
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcons(newTheme);
+        }
+
+        if (desktopThemeBtn) desktopThemeBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if (desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if (mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id)?.classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id)?.classList.toggle('active');
+        };
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        if (closeBtn) closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        if (mobileMenu) mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) mobileMenu.classList.remove('active'); });
+
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => { if(scrollBtn) scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; });
+        if (scrollBtn) scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && mobileMenu) mobileMenu.classList.remove('active'); });
+    })();
+</script>
+</body>
+</html>

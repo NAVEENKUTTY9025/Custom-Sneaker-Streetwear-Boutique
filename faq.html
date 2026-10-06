@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SOLEHOUSE FAQ – Answers on custom orders, shipping, returns, sizing & more.">
+    <title>FAQ | SOLEHOUSE — Custom Sneaker & Streetwear</title>
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..900&display=swap" rel="stylesheet">
+    <style>
+        /* ----- RESET & VARIABLES ----- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F7F7F7;
+            --text-main: #0F0F0F;
+            --text-muted: #3A3A3A;
+            --card-bg: #FFFFFF;
+            --border-subtle: #E0E0E0;
+            --accent-orange: #FF4600;
+            --navbar-bg: #FFFFFF;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #F0F0F0;
+        }
+        [data-theme="dark"] {
+            --bg-primary: #0F0F0F;
+            --bg-secondary: #1A1A1A;
+            --text-main: #FFFFFF;
+            --text-muted: #B0B0B0;
+            --card-bg: #1E1E1E;
+            --border-subtle: #2E2E2E;
+            --accent-orange: #FF4600;
+            --navbar-bg: #0F0F0F;
+            --pure-white: #FFFFFF;
+            --pure-black: #0F0F0F;
+            --light-gray: #1E1E1E;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-main);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; }
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* ----- NAVBAR ----- */
+        .navbar-container {
+            background-color: var(--navbar-bg);
+            border-bottom: 3px solid var(--accent-orange);
+            padding: 0.75rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(255, 70, 0, 0.15);
+        }
+        .navbar-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: opacity 0.2s;
+        }
+        .logo:hover { opacity: 0.8; }
+        .logo-icon {
+            width: 3rem; height: 3rem;
+            background-color: var(--bg-primary);
+            border-radius: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            border: 3px solid var(--accent-orange);
+        }
+        .logo-icon i { color: var(--accent-orange); font-size: 2rem; }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+        }
+        .logo-text span { color: var(--accent-orange); }
+        .logo-tagline {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            display: block;
+            margin-top: -0.25rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+        .desktop-nav { display: none; align-items: center; gap: 0.25rem; }
+        .nav-link {
+            color: var(--text-muted);
+            padding: 0.5rem 0.875rem;
+            transition: 0.2s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 30px;
+        }
+        .nav-link:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .nav-link.active {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            font-weight: 800;
+        }
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%; left: 0;
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-orange);
+            border-radius: 16px;
+            min-width: 200px;
+            opacity: 0; visibility: hidden;
+            transform: translateY(10px);
+            transition: 0.3s;
+            z-index: 1000;
+            box-shadow: 0 15px 30px rgba(255, 70, 0, 0.25);
+        }
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1; visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-muted);
+            transition: 0.2s;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 500;
+        }
+        .dropdown-item:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            border-radius: 12px;
+        }
+        .dropdown-arrow { font-size: 0.7rem; transition: 0.2s; }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        .navbar-right-desktop { display: none; align-items: center; gap: 0.75rem; }
+        .icon-btn {
+            width: 2.5rem; height: 2.5rem;
+            background-color: transparent;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-main);
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .icon-btn:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .login-btn {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.625rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.875rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            transition: 0.2s;
+            border: 2px solid var(--accent-orange);
+        }
+        .login-btn:hover {
+            background-color: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .mobile-menu-btn {
+            display: flex;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-menu {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: var(--bg-primary);
+            z-index: 9999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 3px solid var(--accent-orange);
+        }
+        .mobile-menu-close { color: var(--text-main); font-size: 2rem; background: none; border: none; cursor: pointer; }
+        .mobile-menu-items { padding: 1.5rem; }
+        .mobile-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .mobile-menu-item i { color: var(--accent-orange); margin-right: 1rem; width: 1.75rem; }
+        .mobile-dropdown { border-bottom: 1px solid var(--border-subtle); }
+        .mobile-dropdown-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background: none; border: none;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            padding: 1rem 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .mobile-dropdown-btn i:first-child { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+        }
+        .mobile-dropdown-content.active { max-height: 200px; padding: 0.75rem 0; }
+        .mobile-dropdown-content a {
+            display: block;
+            padding: 0.75rem 1.5rem 0.75rem 3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .mobile-dropdown-content a:hover { background-color: var(--accent-orange); color: var(--pure-white); }
+        .mobile-action-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            background: transparent;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-subtle);
+            font-weight: 600;
+        }
+        .mobile-action-item i { color: var(--accent-orange); margin-right: 1rem; }
+        .mobile-separator { margin: 1rem 0; border-top: 3px solid var(--accent-orange); }
+
+        /* ----- FAQ PAGE ----- */
+        .section-label {
+            color: var(--accent-orange);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) { .section-title { font-size: 3rem; } }
+
+        /* Hero */
+        .faq-hero {
+            background: var(--bg-primary);
+            padding-top: 130px;
+            padding-bottom: 2rem;
+            text-align: center;
+        }
+        .faq-hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) { .faq-hero h1 { font-size: 4.5rem; } }
+        .faq-hero p {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Search bar */
+        .faq-search-wrap {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .faq-search-wrap i {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-orange);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+        .faq-search {
+            width: 100%;
+            padding: 1.1rem 3rem 1.1rem 3.5rem;
+            border-radius: 9999px;
+            border: 3px solid var(--border-subtle);
+            background: var(--card-bg);
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            outline: none;
+            transition: 0.2s;
+        }
+        .faq-search::placeholder { color: var(--text-muted); }
+        .faq-search:focus {
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 4px rgba(255,70,0,0.1);
+        }
+        .faq-search-clear {
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0.5rem;
+            display: none;
+        }
+        .faq-search-clear.visible { display: block; }
+        .faq-search-clear:hover { color: var(--accent-orange); }
+
+        /* Category tabs */
+        .faq-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .faq-tab {
+            padding: 0.65rem 1.4rem;
+            border-radius: 9999px;
+            border: 2px solid var(--border-subtle);
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .faq-tab i { font-size: 0.85rem; }
+        .faq-tab:hover {
+            border-color: var(--accent-orange);
+            color: var(--accent-orange);
+        }
+        .faq-tab.active {
+            background: var(--accent-orange);
+            border-color: var(--accent-orange);
+            color: var(--pure-white);
+        }
+
+        /* FAQ Layout */
+        .faq-body {
+            background: var(--bg-secondary);
+            padding: 4rem 0 5rem 0;
+        }
+        .faq-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+        @media (min-width: 1024px) {
+            .faq-layout { grid-template-columns: 1fr 3fr; }
+        }
+
+        /* Sidebar */
+        .faq-sidebar {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 2rem;
+            padding: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 6rem;
+        }
+        @media (max-width: 1023px) { .faq-sidebar { position: static; } }
+        .faq-sidebar h3 {
+            font-size: 1.15rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--accent-orange);
+            display: inline-block;
+        }
+        .faq-sidebar-list {
+            list-style: none;
+        }
+        .faq-sidebar-list li {
+            padding: 0.6rem 0;
+        }
+        .faq-sidebar-list a {
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .faq-sidebar-list a:hover {
+            color: var(--accent-orange);
+            transform: translateX(3px);
+        }
+        .faq-sidebar-list a i {
+            color: var(--accent-orange);
+            font-size: 0.8rem;
+        }
+
+        .faq-sidebar-cta {
+            margin-top: 2rem;
+            background: var(--accent-orange);
+            border-radius: 1.5rem;
+            padding: 1.75rem;
+            text-align: center;
+            color: var(--pure-white);
+        }
+        .faq-sidebar-cta i {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .faq-sidebar-cta h4 {
+            font-size: 1.1rem;
+            color: var(--pure-white);
+            margin-bottom: 0.5rem;
+        }
+        .faq-sidebar-cta p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+        }
+        .faq-sidebar-cta a {
+            display: block;
+            background: var(--pure-white);
+            color: var(--accent-orange);
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .faq-sidebar-cta a:hover {
+            background: var(--pure-black);
+            color: var(--pure-white);
+        }
+
+        /* Accordion */
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .faq-section-group {
+            margin-bottom: 1rem;
+        }
+        .faq-section-title {
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .faq-item {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 1.5rem;
+            margin-bottom: 0.85rem;
+            transition: 0.25s;
+            overflow: hidden;
+        }
+        .faq-item:hover {
+            border-color: var(--accent-orange);
+        }
+        .faq-item.open {
+            border-color: var(--accent-orange);
+            box-shadow: 0 12px 30px rgba(255,70,0,0.1);
+        }
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.35rem 1.75rem;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .faq-question:hover { color: var(--accent-orange); }
+        .faq-question-text {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            flex: 1;
+        }
+        .faq-question-text i {
+            color: var(--accent-orange);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .faq-chevron {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: rgba(255,70,0,0.1);
+            color: var(--accent-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+            background: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+        .faq-answer-inner {
+            padding: 0 1.75rem 1.5rem 1.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.25rem;
+        }
+        .faq-answer-inner a {
+            color: var(--accent-orange);
+            font-weight: 700;
+        }
+        .faq-answer-inner a:hover { text-decoration: underline; }
+
+        /* No results */
+        .faq-no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border: 2px dashed var(--border-subtle);
+            border-radius: 2rem;
+            display: none;
+        }
+        .faq-no-results.visible { display: block; }
+        .faq-no-results i {
+            font-size: 3rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+        }
+        .faq-no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .faq-no-results p {
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        .faq-no-results a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.85rem 1.75rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: 2px solid var(--accent-orange);
+        }
+        .faq-no-results a:hover {
+            background: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+
+        /* Help CTA Band */
+        .help-cta {
+            background: var(--accent-orange);
+            padding: 4rem 0;
+        }
+        .help-cta-inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            text-align: center;
+        }
+        @media (min-width: 1024px) {
+            .help-cta-inner {
+                grid-template-columns: 1.3fr 1fr;
+                text-align: left;
+            }
+        }
+        .help-cta h2 {
+            font-size: 2.5rem;
+            color: var(--pure-white);
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
+        }
+        @media (min-width: 768px) { .help-cta h2 { font-size: 3rem; } }
+        .help-cta p {
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        .help-cta-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        @media (min-width: 1024px) { .help-cta-btns { justify-content: flex-end; } }
+        .btn-white {
+            background: var(--pure-black);
+            color: var(--pure-white);
+            padding: 1rem 1.75rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid var(--pure-black);
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        .btn-white:hover {
+            background: transparent;
+            color: var(--pure-white);
+            border-color: var(--pure-white);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--pure-white);
+            padding: 1rem 1.75rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid var(--pure-white);
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+        .btn-ghost:hover {
+            background: var(--pure-white);
+            color: var(--accent-orange);
+        }
+
+        /* ----- FOOTER ----- */
+        .footer {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            padding: 4rem 0 2rem 0;
+            border-top: 3px solid var(--accent-orange);
+        }
+        .footer-grid {
+            display: grid;
+            gap: 2.5rem;
+            grid-template-columns: 1fr;
+            margin-bottom: 3rem;
+        }
+        @media (min-width:768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
+        .footer-logo-block { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer .logo { margin-bottom: 0.5rem; }
+        .footer-heading {
+            color: var(--accent-orange);
+            margin-bottom: 1.25rem;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a {
+            color: var(--text-muted);
+            transition: 0.2s;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .footer-links a:hover { color: var(--accent-orange); padding-left: 4px; }
+        .footer-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            border: 2px solid var(--accent-orange);
+            background: var(--bg-primary);
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            font-family: inherit;
+            outline: none;
+        }
+        .footer-btn {
+            width: 100%;
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            border: 2px solid var(--accent-orange);
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .footer-btn:hover {
+            background: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .copyright {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        #scroll-top {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem;
+            background-color: var(--accent-orange); color: var(--pure-white); border-radius: 50%; border: 2px solid var(--accent-orange);
+            cursor: pointer; display: none; z-index: 100;
+        }
+        #scroll-top:hover { background: transparent; color: var(--text-main); }
+
+        @media (min-width: 1280px) {
+            .desktop-nav { display: flex; }
+            .navbar-right-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        .fade-in-up { animation: fadeInUp 0.7s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar-container">
+    <div class="container navbar-flex">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <div class="desktop-nav">
+            <div class="dropdown" id="home-dropdown">
+                <span class="nav-link" onclick="toggleDesktopDropdown('home-dropdown')">Home <i class="fas fa-chevron-down dropdown-arrow"></i></span>
+                <div class="dropdown-menu">
+                    <a href="index.html" class="dropdown-item">Home 1</a>
+                    <a href="home2.html" class="dropdown-item">Home 2</a>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="faq.html" class="nav-link active">Faq</a>
+            <a href="pricing.html" class="nav-link">Pricing</a>
+            <a href="gallery.html" class="nav-link">Gallery</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <div class="navbar-right-desktop">
+            <button class="icon-btn" id="desktop-theme-toggle"><i class="fas fa-moon" id="desktop-theme-icon"></i></button>
+            <button class="icon-btn" id="desktop-rtl-toggle"><i class="fas fa-exchange-alt"></i></button>
+            <a href="contact.html" class="login-btn"><i class="fas fa-map-marker-alt"></i> Visit Store</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<!-- mobile menu -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+            <div>
+                <div class="logo-text">SOLE<span>HOUSE</span></div>
+                <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+            </div>
+        </a>
+        <button class="mobile-menu-close" id="close-mobile-menu"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="mobile-menu-items">
+        <div class="mobile-dropdown">
+            <button class="mobile-dropdown-btn" onclick="toggleMobileDropdown('home-mobile')">
+                <span><i class="fas fa-home"></i> Home</span> <i class="fas fa-chevron-down"></i>
+            </button>
+            <div id="home-mobile" class="mobile-dropdown-content">
+                <a href="index.html">Home 1</a> <a href="home2.html">Home 2</a>
+            </div>
+        </div>
+        <a href="about.html" class="mobile-menu-item"><i class="fas fa-users"></i> About</a>
+        <a href="services.html" class="mobile-menu-item"><i class="fas fa-camera"></i> Services</a>
+        <a href="faq.html" class="mobile-menu-item"><i class="fas fa-question-circle"></i> Faq</a>
+        <a href="pricing.html" class="mobile-menu-item"><i class="fas fa-tag"></i> Pricing</a>
+        <a href="gallery.html" class="mobile-menu-item"><i class="fas fa-images"></i> Gallery</a>
+        <a href="contact.html" class="mobile-menu-item"><i class="fas fa-envelope"></i> Contact</a>
+        <div class="mobile-separator"></div>
+        <button class="mobile-action-item" onclick="window.location.href='contact.html'"><i class="fas fa-map-marker-alt"></i> Visit Store</button>
+        <button class="mobile-action-item" id="mobile-rtl-toggle"><i class="fas fa-exchange-alt"></i> RTL</button>
+        <button class="mobile-action-item" id="mobile-theme-toggle"><i class="fas fa-moon" id="mobile-theme-icon"></i> Theme</button>
+    </div>
+</div>
+
+<!-- ===== FAQ HERO ===== -->
+<section class="faq-hero">
+    <div class="container">
+        <span class="section-label fade-in-up"><i class="fas fa-question-circle"></i> HELP CENTER</span>
+        <h1 class="fade-in-up">GOT <span style="color: var(--accent-orange);">QUESTIONS?</span></h1>
+        <p class="fade-in-up">Everything you need to know about customs, drops, shipping, and more. Search or browse by category.</p>
+
+        <div class="faq-search-wrap fade-in-up">
+            <i class="fas fa-search"></i>
+            <input type="text" class="faq-search" id="faq-search" placeholder="Search questions... e.g. 'shipping' or 'custom'">
+            <button class="faq-search-clear" id="faq-search-clear" aria-label="Clear search"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="faq-tabs fade-in-up" id="faq-tabs">
+            <button class="faq-tab active" data-category="all"><i class="fas fa-th"></i> All</button>
+            <button class="faq-tab" data-category="orders"><i class="fas fa-shopping-bag"></i> Orders</button>
+            <button class="faq-tab" data-category="custom"><i class="fas fa-paint-brush"></i> Custom</button>
+            <button class="faq-tab" data-category="shipping"><i class="fas fa-truck"></i> Shipping</button>
+            <button class="faq-tab" data-category="returns"><i class="fas fa-undo"></i> Returns</button>
+            <button class="faq-tab" data-category="account"><i class="fas fa-user"></i> Account</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ BODY ===== -->
+<section class="faq-body">
+    <div class="container">
+        <div class="faq-layout">
+
+            <!-- Sidebar -->
+            <aside class="faq-sidebar fade-in-up">
+                <h3>Quick Links</h3>
+                <ul class="faq-sidebar-list">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Track My Order</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Start a Custom</a></li>
+                    <li><a href="pricing.html"><i class="fas fa-chevron-right"></i> View Pricing</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Shipping Rates</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Returns Policy</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Size Guide</a></li>
+                </ul>
+
+                <div class="faq-sidebar-cta">
+                    <i class="fas fa-headset"></i>
+                    <h4>Still stuck?</h4>
+                    <p>Our team replies within 24 hours.</p>
+                    <a href="contact.html">Contact Support</a>
+                </div>
+            </aside>
+
+            <!-- Accordion -->
+            <div class="faq-accordion fade-in-up" id="faq-accordion">
+
+                <!-- ORDERS -->
+                <div class="faq-section-group" data-group="orders">
+                    <div class="faq-section-title"><i class="fas fa-shopping-bag"></i> Orders</div>
+
+                    <div class="faq-item" data-category="orders" data-question="How do I place a custom sneaker order?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> How do I place a custom sneaker order?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Head to our <a href="contact.html">Contact page</a> and fill out the form with "Custom Sneaker Order" as your topic. Include your shoe size, the model you want, and any design ideas or reference images. We'll reply within 24 hours with a quote and timeline.
+                        </div></div>
+                    </div>
+
+                    <div class="faq-item" data-category="orders" data-question="Can I change or cancel my order after placing it?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> Can I change or cancel my order after placing it?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Yes — as long as we haven't started painting your pair. Reach out ASAP via email at <a href="mailto:hello@solehouse.com">hello@solehouse.com</a>. Once paint is on the shoe, changes depend on the design, but we'll always work with you to find a solution.
+                        </div></div>
+                    </div>
+
+                    <div class="faq-item" data-category="orders" data-question="How do I track my order?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> How do I track my order?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Once your order ships, you'll receive an email with a tracking number and a link to the carrier's site. You can also log in to your SOLEHOUSE account and view order status under "My Orders."
+                        </div></div>
+                    </div>
+                </div>
+
+                <!-- CUSTOM -->
+                <div class="faq-section-group" data-group="custom">
+                    <div class="faq-section-title"><i class="fas fa-paint-brush"></i> Custom Sneakers</div>
+
+                    <div class="faq-item" data-category="custom" data-question="How long does a custom order take?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> How long does a custom order take?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Standard turnaround is 3–7 days depending on the package you choose. Creator orders are painted in 3–5 days, and Elite orders in 24–48 hours. Shipping adds 2–5 days in the US and 5–10 days internationally.
+                        </div></div>
+                    </div>
+
+                    <div class="faq-item" data-category="custom" data-question="Can I send in my own sneakers to be customized?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> Can I send in my own sneakers to be customized?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Absolutely. We accept shipped-in pairs for all custom packages. Mention "Send My Pair" in your message and we'll email you a prepaid shipping label (US only). For international customers, you'll cover outbound shipping.
+                        </div></div>
+                    </div>
+
+                    <div class="faq-item" data-category="custom" data-question="Are the paints waterproof and durable?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> Are the paints waterproof and durable?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Yes. We use professional-grade leather paints and archival sealants designed specifically for footwear. They're water-resistant, flex without cracking, and hold up to everyday wear. We also include a free touch-up kit with Creator and Elite packages.
+                        </div></div>
+                    </div>
+
+                    <div class="faq-item" data-category="custom" data-question="What if I don't like the design?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> What if I don't like the design?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Every order includes a digital proof before any paint touches the shoe. Creator and Elite packages include unlimited revisions, so we keep tweaking until you love it. You only sign off when you're 100% happy.
+                        </div></div>
+                    </div>
+                </div>
+
+                <!-- SHIPPING -->
+                <div class="faq-section-group" data-group="shipping">
+                    <div class="faq-section-title"><i class="fas fa-truck"></i> Shipping</div>
+
+                    <div class="faq-item" data-category="shipping" data-question="Do you ship internationally?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> Do you ship internationally?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Yes, we ship worldwide. Elite packages include free international shipping. For other tiers, rates are calculated at checkout based on your location and package weight.
+                        </div></div>
+                    </div>
+
+                    <div class="faq-item" data-category="shipping" data-question="How much does shipping cost?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> How much does shipping cost?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            US shipping starts at $9.95 for standard (3–5 days) and $19.95 for express (1–2 days). International shipping starts at $24.95. Elite customers ship free worldwide.
+                        </div></div>
+                    </div>
+                </div>
+
+                <!-- RETURNS -->
+                <div class="faq-section-group" data-group="returns">
+                    <div class="faq-section-title"><i class="fas fa-undo"></i> Returns & Exchanges</div>
+
+                    <div class="faq-item" data-category="returns" data-question="What is your return policy?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> What is your return policy?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Custom-painted sneakers are non-returnable (they're one-of-one and made just for you). Apparel and unworn, non-custom items can be returned within 30 days of delivery in original condition. See our full <a href="#">Returns Policy</a>.
+                        </div></div>
+                    </div>
+
+                    <div class="faq-item" data-category="returns" data-question="What if my order arrives damaged or wrong?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> What if my order arrives damaged or wrong?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Contact us within 48 hours of delivery with photos of the issue. If it's our mistake, we'll repaint, replace, or refund — your choice. Your satisfaction is non-negotiable.
+                        </div></div>
+                    </div>
+                </div>
+
+                <!-- ACCOUNT -->
+                <div class="faq-section-group" data-group="account">
+                    <div class="faq-section-title"><i class="fas fa-user"></i> Account & Membership</div>
+
+                    <div class="faq-item" data-category="account" data-question="How does the membership work?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> How does the membership work?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Membership gives you 20% off every custom order, free touch-up kits, and early access to limited drops (24–48 hours before public). You can cancel anytime — no long-term commitment. <a href="pricing.html">See membership pricing</a>.
+                        </div></div>
+                    </div>
+
+                    <div class="faq-item" data-category="account" data-question="I forgot my password. How do I reset it?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> I forgot my password. How do I reset it?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Click "Forgot password?" on the <a href="login.html">login page</a>. Enter your email and we'll send a reset link within a few minutes. Check spam if you don't see it.
+                        </div></div>
+                    </div>
+
+                    <div class="faq-item" data-category="account" data-question="How do I delete my account?">
+                        <button class="faq-question" type="button">
+                            <span class="faq-question-text"><i class="fas fa-question-circle"></i> How do I delete my account?</span>
+                            <span class="faq-chevron"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">
+                            Email us at <a href="mailto:hello@solehouse.com">hello@solehouse.com</a> with the subject "Delete My Account." We'll process the request within 7 days and confirm once it's done.
+                        </div></div>
+                    </div>
+                </div>
+
+                <!-- No results -->
+                <div class="faq-no-results" id="faq-no-results">
+                    <i class="fas fa-search"></i>
+                    <h3>No results found</h3>
+                    <p>Try a different search term or browse by category above.</p>
+                    <a href="contact.html"><i class="fas fa-envelope"></i> Ask Us Directly</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== HELP CTA ===== -->
+<section class="help-cta">
+    <div class="container">
+        <div class="help-cta-inner">
+            <div>
+                <span class="section-label" style="color: rgba(255,255,255,0.85);">STILL NEED HELP?</span>
+                <h2>We've got you covered.</h2>
+                <p>Can't find what you're looking for? Our support team replies within 24 hours — usually faster.</p>
+            </div>
+            <div class="help-cta-btns">
+                <a href="contact.html" class="btn-white"><i class="fas fa-paper-plane"></i> Contact Us</a>
+                <a href="services.html" class="btn-ghost"><i class="fas fa-concierge-bell"></i> Our Services</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-logo-block">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-shoe-prints"></i></div>
+                    <div>
+                        <div class="logo-text">SOLE<span>HOUSE</span></div>
+                        <span class="logo-tagline">CUSTOM SNEAKER & STREETWEAR</span>
+                    </div>
+                </a>
+                <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem; max-width: 220px;">From limited drops to one-of-one customs — we bring the heat to your feet and your wardrobe.</p>
+            </div>
+            <div>
+                <h3 class="footer-heading">Quick links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="faq.html">Faq</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-heading">Stay Updated</h3>
+                <input class="footer-input" placeholder="Your email address">
+                <button class="footer-btn">Subscribe</button>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <i class="fab fa-instagram" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-youtube" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                    <i class="fab fa-tiktok" style="color: var(--accent-orange); font-size: 1.5rem; cursor: pointer;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <i class="fas fa-copyright"></i> 2025 SOLEHOUSE — White · Black · Hype Orange. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+    (function() {
+        const htmlEl = document.documentElement;
+        const desktopThemeBtn = document.getElementById('desktop-theme-toggle');
+        const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+        const desktopIcon = document.getElementById('desktop-theme-icon');
+        const mobileIcon = document.getElementById('mobile-theme-icon');
+        const desktopRtl = document.getElementById('desktop-rtl-toggle');
+        const mobileRtl = document.getElementById('mobile-rtl-toggle');
+
+        let savedTheme = localStorage.getItem('theme') || 'light';
+        htmlEl.setAttribute('data-theme', savedTheme);
+        updateIcons(savedTheme);
+
+        function updateIcons(theme) {
+            const iconClass = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            if (desktopIcon) desktopIcon.className = iconClass;
+            if (mobileIcon) mobileIcon.className = iconClass;
+        }
+
+        function toggleTheme() {
+            let currentTheme = htmlEl.getAttribute('data-theme');
+            let newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcons(newTheme);
+        }
+
+        if (desktopThemeBtn) desktopThemeBtn.addEventListener('click', toggleTheme);
+        if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
+
+        function toggleRtl() {
+            let dir = htmlEl.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+            htmlEl.setAttribute('dir', dir);
+            localStorage.setItem('direction', dir);
+        }
+        if (desktopRtl) desktopRtl.addEventListener('click', toggleRtl);
+        if (mobileRtl) mobileRtl.addEventListener('click', toggleRtl);
+
+        window.toggleDesktopDropdown = function(id) {
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            document.getElementById(id)?.classList.toggle('active');
+        };
+        window.toggleMobileDropdown = function(id) {
+            document.getElementById(id)?.classList.toggle('active');
+        };
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeBtn = document.getElementById('close-mobile-menu');
+        if (menuBtn) menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        if (closeBtn) closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        if (mobileMenu) mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) mobileMenu.classList.remove('active'); });
+
+        const scrollBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => { if(scrollBtn) scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; });
+        if (scrollBtn) scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && mobileMenu) mobileMenu.classList.remove('active'); });
+
+        /* ===== FAQ ACCORDION ===== */
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const btn = item.querySelector('.faq-question');
+            btn.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+                // close others
+                faqItems.forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+
+        // open first item by default
+        if (faqItems.length) faqItems[0].classList.add('open');
+
+        /* ===== CATEGORY FILTER ===== */
+        const tabs = document.querySelectorAll('.faq-tab');
+        const groups = document.querySelectorAll('.faq-section-group');
+        const noResults = document.getElementById('faq-no-results');
+
+        function filterFAQ(category) {
+            let visibleCount = 0;
+
+            groups.forEach(group => {
+                const groupCat = group.getAttribute('data-group');
+                const groupItems = group.querySelectorAll('.faq-item');
+
+                if (category === 'all' || groupCat === category) {
+                    group.style.display = '';
+                    groupItems.forEach(item => {
+                        item.style.display = '';
+                        visibleCount++;
+                    });
+                } else {
+                    group.style.display = 'none';
+                }
+            });
+
+            noResults.classList.toggle('visible', visibleCount === 0);
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const cat = tab.getAttribute('data-category');
+                filterFAQ(cat);
+                // clear search when switching tabs
+                searchInput.value = '';
+                clearBtn.classList.remove('visible');
+            });
+        });
+
+        /* ===== SEARCH ===== */
+        const searchInput = document.getElementById('faq-search');
+        const clearBtn = document.getElementById('faq-search-clear');
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase().trim();
+            clearBtn.classList.toggle('visible', query.length > 0);
+
+            let visibleCount = 0;
+
+            // reset tab highlight when searching
+            if (query.length > 0) {
+                tabs.forEach(t => t.classList.remove('active'));
+            }
+
+            groups.forEach(group => {
+                const items = group.querySelectorAll('.faq-item');
+                let groupVisible = 0;
+
+                items.forEach(item => {
+                    const question = item.getAttribute('data-question').toLowerCase();
+                    const answer = item.querySelector('.faq-answer-inner').textContent.toLowerCase();
+                    const match = query === '' || question.includes(query) || answer.includes(query);
+
+                    item.style.display = match ? '' : 'none';
+                    if (match) groupVisible++;
+                });
+
+                group.style.display = groupVisible > 0 ? '' : 'none';
+                visibleCount += groupVisible;
+            });
+
+            noResults.classList.toggle('visible', visibleCount === 0);
+
+            // if query is empty, restore active state to "all"
+            if (query === '') {
+                const allTab = document.querySelector('.faq-tab[data-category="all"]');
+                if (allTab) allTab.classList.add('active');
+                filterFAQ('all');
+            }
+        });
+
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            clearBtn.classList.remove('visible');
+            const allTab = document.querySelector('.faq-tab[data-category="all"]');
+            if (allTab) {
+                tabs.forEach(t => t.classList.remove('active'));
+                allTab.classList.add('active');
+            }
+            filterFAQ('all');
+            searchInput.focus();
+        });
+    })();
+</script>
+</body>
+</html>
