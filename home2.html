@@ -47,7 +47,7 @@
         }
         h1, h2, h3, h4, h5, h6 {
             color: var(--text-main);
-            font-weight: 800;
+            font-weight: 600 !important;
             line-height: 1.2;
             letter-spacing: -0.02em;
         }
@@ -70,7 +70,7 @@
         }
         .section-title {
             font-size: 2.5rem;
-            font-weight: 900;
+            font-weight: 600;
             margin-bottom: 1rem;
         }
         @media (min-width: 768px) { .section-title { font-size: 3rem; } }
@@ -176,14 +176,20 @@
         .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
         .navbar-right-desktop { display: none; align-items: center; gap: 0.75rem; }
         .icon-btn {
-            width: 2.5rem; height: 2.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
             background-color: transparent;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             color: var(--text-main);
             border: 2px solid var(--accent-orange);
             cursor: pointer;
             transition: 0.2s;
+            box-sizing: border-box;
+            padding: 0;
+            flex-shrink: 0;
         }
         .icon-btn:hover {
             background-color: var(--accent-orange);
@@ -192,13 +198,21 @@
         .login-btn {
             background-color: var(--accent-orange);
             color: var(--pure-white);
-            padding: 0.625rem 1.25rem;
+            height: 2.5rem;
+            padding: 0 1.25rem;
             border-radius: 9999px;
             font-weight: 800;
             font-size: 0.875rem;
-            display: flex; align-items: center; gap: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             transition: 0.2s;
             border: 2px solid var(--accent-orange);
+            box-sizing: border-box;
+            line-height: 1;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .login-btn:hover {
             background-color: transparent;
@@ -290,13 +304,28 @@
 
         /* ================= SECTION 1: HERO with big split + ticker ================= */
         .hero2 {
-            background: var(--bg-primary);
-            padding-top: 90px;
-            min-height: 100vh;
+            min-height: 580px;
+            width: 100%;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
             overflow: hidden;
+            padding-top: 110px;
+            padding-bottom: 0;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.78) 100%),
+                        url('https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+        [data-theme="dark"] .hero2 {
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.92) 0%, rgba(15, 15, 15, 0.82) 100%),
+                        url('https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .hero2 .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
         }
         .hero2-pattern {
             position: absolute; inset: 0;
@@ -317,7 +346,7 @@
         @media (min-width: 1024px) { .hero2-grid { grid-template-columns: 1.1fr 1fr; gap: 4rem; } }
         .hero2-content h1 {
             font-size: 2.75rem;
-            font-weight: 900;
+            font-weight: 600;
             line-height: 1.05;
             letter-spacing: -0.04em;
             margin-bottom: 1.5rem;
@@ -516,9 +545,102 @@
             margin-bottom: 0.75rem;
         }
 
-        /* ================= SECTION 3: Bento grid ================= */
-        .bento-section {
+                /* ================= SECTION: Shop by Category ================= */
+        .categories-section {
             background: var(--bg-primary);
+            padding: 5rem 0;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            margin-top: 3rem;
+        }
+        @media (min-width: 640px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .category-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .category-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .category-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 16px 36px rgba(255, 70, 0, 0.16);
+        }
+        .category-img-wrap {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .category-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .category-card:hover .category-img-wrap img {
+            transform: scale(1.08);
+        }
+        .category-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: 1px solid var(--accent-orange);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            letter-spacing: 0.5px;
+        }
+        [dir="rtl"] .category-badge {
+            right: auto;
+            left: 1rem;
+        }
+        .category-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .category-body h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+        .category-body p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .category-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-orange);
+            font-weight: 800;
+            font-size: 0.95rem;
+            transition: gap 0.2s ease;
+        }
+        .category-link-btn:hover {
+            gap: 0.8rem;
+        }
+
+/* ================= SECTION 3: Bento grid ================= */
+        .bento-section {
+            background: var(--bg-secondary);
             padding: 5rem 0;
         }
         .bento-grid {
@@ -647,7 +769,273 @@
             to { transform: translateX(-50%); }
         }
 
-        /* ================= SECTION 5: Testimonials slider ================= */
+                /* ================= SECTION: Drops & Raffle Calendar ================= */
+        .drops-calendar-section {
+            background: var(--bg-primary);
+            padding: 5rem 0;
+        }
+        .drops-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        @media (min-width: 1024px) { .drops-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .drop-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .drop-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 16px 36px rgba(255, 70, 0, 0.16);
+        }
+        .drop-card-top {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-subtle);
+            background: var(--bg-secondary);
+        }
+        .drop-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .drop-status-pill.open {
+            background: rgba(46, 204, 113, 0.15);
+            color: #27ae60;
+            border: 1px solid #27ae60;
+        }
+        .drop-status-pill.vip {
+            background: rgba(255, 70, 0, 0.15);
+            color: var(--accent-orange);
+            border: 1px solid var(--accent-orange);
+        }
+        .drop-status-pill.upcoming {
+            background: rgba(52, 152, 219, 0.15);
+            color: #2980b9;
+            border: 1px solid #2980b9;
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulseDot 1.5s infinite;
+        }
+        @keyframes pulseDot {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.4); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .drop-edition-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+        .drop-img-box {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .drop-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .drop-card:hover .drop-img-box img {
+            transform: scale(1.08);
+        }
+        .drop-card-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .drop-date-label {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.35rem;
+        }
+        .drop-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.65rem;
+            color: var(--text-main);
+        }
+        .drop-info-pill-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 0.6rem 1rem;
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .drop-price {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--accent-orange);
+        }
+        .countdown-container {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 0.85rem;
+            text-align: center;
+            margin-bottom: 1.25rem;
+        }
+        .countdown-title {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .countdown-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 48px;
+        }
+        .countdown-num {
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--text-main);
+            line-height: 1;
+        }
+        .countdown-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 0.2rem;
+        }
+        .countdown-sep {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--accent-orange);
+            margin-top: -0.5rem;
+        }
+        .drop-btn {
+            width: 100%;
+            padding: 0.85rem;
+            border-radius: 9999px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 2px solid transparent;
+        }
+        .drop-btn.btn-orange {
+            background: var(--accent-orange);
+            color: var(--pure-white);
+        }
+        .drop-btn.btn-orange:hover {
+            background: transparent;
+            color: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+        .drop-btn.btn-dark {
+            background: var(--text-main);
+            color: var(--pure-white);
+        }
+        .drop-btn.btn-dark:hover {
+            background: transparent;
+            color: var(--text-main);
+            border-color: var(--text-main);
+        }
+        .drop-policy-banner {
+            margin-top: 3.5rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.75rem 2rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .drop-policy-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .drop-policy-item i {
+            color: var(--accent-orange);
+            font-size: 1.25rem;
+        }
+
+        /* Toast notification */
+        .toast-notify {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--pure-black);
+            color: var(--pure-white);
+            border: 2px solid var(--accent-orange);
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 10000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+            pointer-events: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .toast-notify.show {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        [dir="rtl"] .toast-notify {
+            right: auto;
+            left: 2rem;
+        }
+
+/* ================= SECTION 5: Testimonials slider ================= */
         .testimonials-section {
             background: var(--bg-secondary);
             padding: 5rem 0;
@@ -813,7 +1201,7 @@
         .footer-heading {
             color: var(--accent-orange);
             margin-bottom: 1.25rem;
-            font-weight: 800;
+            font-weight: 600;
             font-size: 1.1rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -1066,6 +1454,72 @@
     </div>
 </section>
 
+<!-- ================= SECTION: CURATED CAPSULES & CATEGORIES ================= -->
+<section class="categories-section">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <span class="section-label"><i class="fas fa-th-large"></i> VAULT DEPARTMENTS</span>
+            <h2 class="section-title">Shop by Category</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                From hand-painted one-of-ones to heavyweight streetwear blanks — browse our curated boutique archives.
+            </p>
+        </div>
+        <div class="category-grid">
+            <!-- Cat 1 -->
+            <div class="category-card fade-in-up">
+                <div class="category-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=2070&auto=format&fit=crop" alt="Custom Sneaker Vault" loading="lazy">
+                    <span class="category-badge">48 Grails</span>
+                </div>
+                <div class="category-body">
+                    <h3>Custom Sneakers</h3>
+                    <p>Air Jordan 1s, bespoke Dunks, AF1s and Yeezy commissions painted by master artists.</p>
+                    <a href="gallery.html" class="category-link-btn">Explore Kicks <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Cat 2 -->
+            <div class="category-card fade-in-up">
+                <div class="category-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=2070&auto=format&fit=crop" alt="Heavyweight Hoodies" loading="lazy">
+                    <span class="category-badge">24 Styles</span>
+                </div>
+                <div class="category-body">
+                    <h3>Hoodies & Outerwear</h3>
+                    <p>450GSM French terry cotton, boxy drop-shoulder fits, acid-wash patinas & puff graphics.</p>
+                    <a href="gallery.html" class="category-link-btn">Shop Hoodies <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Cat 3 -->
+            <div class="category-card fade-in-up">
+                <div class="category-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=2070&auto=format&fit=crop" alt="Graphic Streetwear Tees" loading="lazy">
+                    <span class="category-badge">36 Designs</span>
+                </div>
+                <div class="category-body">
+                    <h3>Graphic Tees</h3>
+                    <p>Vintage enzyme-washed tees, screen-printed in limited numbered runs of 100 with archival ink.</p>
+                    <a href="gallery.html" class="category-link-btn">Shop Tees <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Cat 4 -->
+            <div class="category-card fade-in-up">
+                <div class="category-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=2070&auto=format&fit=crop" alt="Sneaker Care and Accessories" loading="lazy">
+                    <span class="category-badge">18 Essentials</span>
+                </div>
+                <div class="category-body">
+                    <h3>Care & Accessories</h3>
+                    <p>Laser-etched wooden shoe trees, hydrophobic sprays, brass-aglet rope laces & travel cases.</p>
+                    <a href="gallery.html" class="category-link-btn">Shop Accessories <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ================= SECTION 3: Bento grid ================= -->
 <section class="bento-section">
     <div class="container">
@@ -1123,6 +1577,184 @@
         <div class="marquee-item outline"><i class="fas fa-fire"></i> CUSTOM KICKS</div>
         <div class="marquee-item"><i class="fas fa-bolt"></i> LIMITED DROPS</div>
         <div class="marquee-item outline"><i class="fas fa-star"></i> STREETWEAR</div>
+    </div>
+</section>
+
+<!-- ================= SECTION: DROPS & RAFFLE CALENDAR ================= -->
+<section class="drops-calendar-section">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <span class="section-label"><i class="fas fa-calendar-alt"></i> VAULT SCHEDULE</span>
+            <h2 class="section-title">Upcoming Drops & Raffles</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                Live countdown to our next limited capsule releases. Enter active raffles or set early reminders.
+            </p>
+        </div>
+
+        <div class="drops-grid">
+            <!-- Drop 1 -->
+            <div class="drop-card fade-in-up">
+                <div class="drop-card-top">
+                    <span class="drop-status-pill open"><span class="pulse-dot"></span> Raffle Open</span>
+                    <span class="drop-edition-tag">15 Pairs Worldwide</span>
+                </div>
+                <div class="drop-img-box">
+                    <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2070&auto=format&fit=crop" alt="Air Jordan 1 Cyber Tokyo Custom" loading="lazy">
+                </div>
+                <div class="drop-card-body">
+                    <span class="drop-date-label"><i class="fas fa-clock"></i> Drops Friday · 10:00 AM EST</span>
+                    <h3 class="drop-title">AJ1 High "Cyber Tokyo" 1-of-1</h3>
+                    <div class="drop-info-pill-row">
+                        <span>Retail / Pair</span>
+                        <span class="drop-price">$520</span>
+                    </div>
+
+                    <!-- Countdown -->
+                    <div class="countdown-container">
+                        <div class="countdown-title">Raffle Closes In</div>
+                        <div class="countdown-grid" id="drop-timer-1">
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-d">02</span>
+                                <span class="countdown-label">Days</span>
+                            </div>
+                            <span class="countdown-sep">:</span>
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-h">14</span>
+                                <span class="countdown-label">Hours</span>
+                            </div>
+                            <span class="countdown-sep">:</span>
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-m">38</span>
+                                <span class="countdown-label">Mins</span>
+                            </div>
+                            <span class="countdown-sep">:</span>
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-s">22</span>
+                                <span class="countdown-label">Secs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="drop-btn btn-orange" onclick="showToast('Raffle entry confirmed! We sent confirmation details to your email.')">
+                        <i class="fas fa-ticket-alt"></i> Enter Raffle
+                    </button>
+                </div>
+            </div>
+
+            <!-- Drop 2 -->
+            <div class="drop-card fade-in-up">
+                <div class="drop-card-top">
+                    <span class="drop-status-pill vip"><span class="pulse-dot"></span> VIP Early Access</span>
+                    <span class="drop-edition-tag">Limited 100 Pieces</span>
+                </div>
+                <div class="drop-img-box">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=2070&auto=format&fit=crop" alt="Acid-Wash Heavyweight Hoodie" loading="lazy">
+                </div>
+                <div class="drop-card-body">
+                    <span class="drop-date-label"><i class="fas fa-clock"></i> Drops Sunday · 12:00 PM EST</span>
+                    <h3 class="drop-title">Acid-Wash 450GSM Hoodie</h3>
+                    <div class="drop-info-pill-row">
+                        <span>Retail / Piece</span>
+                        <span class="drop-price">$145</span>
+                    </div>
+
+                    <!-- Countdown -->
+                    <div class="countdown-container">
+                        <div class="countdown-title">VIP Access Unlocks In</div>
+                        <div class="countdown-grid" id="drop-timer-2">
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-d">04</span>
+                                <span class="countdown-label">Days</span>
+                            </div>
+                            <span class="countdown-sep">:</span>
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-h">08</span>
+                                <span class="countdown-label">Hours</span>
+                            </div>
+                            <span class="countdown-sep">:</span>
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-m">12</span>
+                                <span class="countdown-label">Mins</span>
+                            </div>
+                            <span class="countdown-sep">:</span>
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-s">45</span>
+                                <span class="countdown-label">Secs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="drop-btn btn-dark" onclick="showToast('VIP Early Access pass reserved! Watch your inbox on drop morning.')">
+                        <i class="fas fa-crown"></i> Claim VIP Access
+                    </button>
+                </div>
+            </div>
+
+            <!-- Drop 3 -->
+            <div class="drop-card fade-in-up">
+                <div class="drop-card-top">
+                    <span class="drop-status-pill upcoming"><span class="pulse-dot"></span> Upcoming Drop</span>
+                    <span class="drop-edition-tag">20 Pairs Total</span>
+                </div>
+                <div class="drop-img-box">
+                    <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=2070&auto=format&fit=crop" alt="Nike Dunk Low Tokyo Drift Custom" loading="lazy">
+                </div>
+                <div class="drop-card-body">
+                    <span class="drop-date-label"><i class="fas fa-clock"></i> Next Tuesday · 10:00 AM EST</span>
+                    <h3 class="drop-title">Dunk Low "Tokyo Drift" Matte</h3>
+                    <div class="drop-info-pill-row">
+                        <span>Retail / Pair</span>
+                        <span class="drop-price">$460</span>
+                    </div>
+
+                    <!-- Countdown -->
+                    <div class="countdown-container">
+                        <div class="countdown-title">Drop Countdown</div>
+                        <div class="countdown-grid" id="drop-timer-3">
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-d">06</span>
+                                <span class="countdown-label">Days</span>
+                            </div>
+                            <span class="countdown-sep">:</span>
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-h">19</span>
+                                <span class="countdown-label">Hours</span>
+                            </div>
+                            <span class="countdown-sep">:</span>
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-m">44</span>
+                                <span class="countdown-label">Mins</span>
+                            </div>
+                            <span class="countdown-sep">:</span>
+                            <div class="countdown-box">
+                                <span class="countdown-num timer-s">10</span>
+                                <span class="countdown-label">Secs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="drop-btn btn-orange" onclick="showToast('Drop alert set! You will be pinged 15 mins before launch.')">
+                        <i class="fas fa-bell"></i> Remind Me
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drop Policy Banner -->
+        <div class="drop-policy-banner">
+            <div class="drop-policy-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>100% Deadstock Authenticity Guaranteed</span>
+            </div>
+            <div class="drop-policy-item">
+                <i class="fas fa-user-shield"></i>
+                <span>Anti-Bot Verified Fair Allocation</span>
+            </div>
+            <div class="drop-policy-item">
+                <i class="fas fa-shipping-fast"></i>
+                <span>Free Insured Global Priority Courier</span>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -1342,6 +1974,57 @@
                 }, 2000);
             });
         }
+
+        /* ===== Live Drop Countdown Timers ===== */
+        const countdownData = [
+            { id: 'drop-timer-1', baseSecs: 2 * 86400 + 14 * 3600 + 38 * 60 + 22 },
+            { id: 'drop-timer-2', baseSecs: 4 * 86400 + 8 * 3600 + 12 * 60 + 45 },
+            { id: 'drop-timer-3', baseSecs: 6 * 86400 + 19 * 3600 + 44 * 60 + 10 }
+        ];
+
+        let elapsedSeconds = 0;
+        function updateCountdowns() {
+            elapsedSeconds++;
+            countdownData.forEach(item => {
+                const el = document.getElementById(item.id);
+                if (!el) return;
+                let rem = item.baseSecs - elapsedSeconds;
+                if (rem < 0) rem = 3600;
+                const d = Math.floor(rem / 86400);
+                const h = Math.floor((rem % 86400) / 3600);
+                const m = Math.floor((rem % 3600) / 60);
+                const s = Math.floor(rem % 60);
+
+                const dEl = el.querySelector('.timer-d');
+                const hEl = el.querySelector('.timer-h');
+                const mEl = el.querySelector('.timer-m');
+                const sEl = el.querySelector('.timer-s');
+
+                if (dEl) dEl.textContent = String(d).padStart(2, '0');
+                if (hEl) hEl.textContent = String(h).padStart(2, '0');
+                if (mEl) mEl.textContent = String(m).padStart(2, '0');
+                if (sEl) sEl.textContent = String(s).padStart(2, '0');
+            });
+        }
+        setInterval(updateCountdowns, 1000);
+        updateCountdowns();
+
+        /* ===== Toast Notification ===== */
+        window.showToast = function(msg) {
+            let toast = document.getElementById('global-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'global-toast';
+                toast.className = 'toast-notify';
+                document.body.appendChild(toast);
+            }
+            toast.innerHTML = `<i class="fas fa-check-circle" style="color:var(--accent-orange); font-size:1.25rem;"></i> <span>${msg}</span>`;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3200);
+        };
+
     })();
 </script>
 </body>

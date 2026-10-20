@@ -50,7 +50,7 @@
         }
         h1, h2, h3, h4, h5, h6 {
             color: var(--text-main);
-            font-weight: 800;
+            font-weight: 600 !important;
             line-height: 1.2;
             letter-spacing: -0.02em;
         }
@@ -174,13 +174,16 @@
             height: 2.5rem;
             background-color: transparent;
             border-radius: 50%;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             color: var(--text-main);
             border: 2px solid var(--accent-orange);
             cursor: pointer;
             transition: 0.2s;
+            box-sizing: border-box;
+            padding: 0;
+            flex-shrink: 0;
         }
         .icon-btn:hover {
             background-color: var(--accent-orange);
@@ -189,15 +192,21 @@
         .login-btn {
             background-color: var(--accent-orange);
             color: var(--pure-white);
-            padding: 0.625rem 1.25rem;
+            height: 2.5rem;
+            padding: 0 1.25rem;
             border-radius: 9999px;
             font-weight: 800;
             font-size: 0.875rem;
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             transition: 0.2s;
             border: 2px solid var(--accent-orange);
+            box-sizing: border-box;
+            line-height: 1;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .login-btn:hover {
             background-color: transparent;
@@ -302,7 +311,7 @@
         }
         .section-title {
             font-size: 2.5rem;
-            font-weight: 900;
+            font-weight: 600;
             margin-bottom: 1rem;
         }
         @media (min-width: 768px) {
@@ -311,10 +320,42 @@
 
         /* Contact hero */
         .contact-hero {
-            background: var(--bg-primary);
-            padding-top: 120px;
-            padding-bottom: 3rem;
+            min-height: 580px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 110px;
+            padding-bottom: 4rem;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.76) 100%),
+                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+        [data-theme="dark"] .contact-hero {
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.92) 0%, rgba(15, 15, 15, 0.82) 100%),
+                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .contact-hero .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .contact-hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.75rem;
+            flex-wrap: wrap;
         }
 
         /* Quick contact cards */
@@ -337,6 +378,10 @@
             padding: 2rem;
             text-align: center;
             transition: 0.25s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
         }
         .quick-card:hover {
             border-color: var(--accent-orange);
@@ -363,13 +408,18 @@
             color: var(--text-muted);
             font-weight: 500;
             font-size: 0.95rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
         }
         .quick-card a {
             color: var(--accent-orange);
             font-weight: 800;
             font-size: 0.95rem;
             transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: auto;
         }
         .quick-card a:hover {
             letter-spacing: 0.5px;
@@ -736,7 +786,7 @@
         .footer-heading { 
             color: var(--accent-orange); 
             margin-bottom: 1.25rem;
-            font-weight: 800;
+            font-weight: 600;
             font-size: 1.1rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -788,12 +838,6 @@
             font-weight: 500;
         }
 
-        #scroll-top {
-            position: fixed; bottom: 1.5rem; right: 1.5rem; width: 3rem; height: 3rem;
-            background-color: var(--accent-orange); color: var(--pure-white); border-radius: 50%; border: 2px solid var(--accent-orange);
-            cursor: pointer; display: none; z-index: 100;
-        }
-        #scroll-top:hover { background: transparent; color: var(--text-main); }
 
         @media (min-width: 1280px) {
             .desktop-nav { display: flex; }
@@ -906,6 +950,10 @@
         <p class="fade-in-up" style="font-size: 1.125rem; color: var(--text-muted); font-weight: 500; max-width: 620px; margin: 0 auto;">
             Custom orders, collaborations, press, or just want to talk sneakers — we're here. Drop us a line and we'll get back within 24 hours.
         </p>
+        <div class="contact-hero-btns fade-in-up">
+            <a href="#contact-form" class="btn-primary"><i class="fas fa-paper-plane"></i> Send Message</a>
+            <a href="#location" class="btn-outline"><i class="fas fa-map-marker-alt"></i> Visit Studio</a>
+        </div>
     </div>
 </section>
 
@@ -1066,7 +1114,7 @@
 </section>
 
 <!-- ===== MAP ===== -->
-<section class="map-section">
+<section class="map-section" id="location">
     <div class="container">
         <div style="text-align: center; margin-bottom: 2.5rem;">
             <span class="section-label">FIND US</span>
@@ -1202,7 +1250,7 @@
     <span>Message sent! We'll get back within 24 hours.</span>
 </div>
 
-<button id="scroll-top"><i class="fas fa-arrow-up"></i></button>
+
 
 <script>
     (function() {
@@ -1258,9 +1306,7 @@
         if (closeBtn) closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
         if (mobileMenu) mobileMenu.addEventListener('click', (e) => { if (e.target === mobileMenu) mobileMenu.classList.remove('active'); });
 
-        const scrollBtn = document.getElementById('scroll-top');
-        window.addEventListener('scroll', () => { if(scrollBtn) scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none'; });
-        if (scrollBtn) scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
 
         window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && mobileMenu) mobileMenu.classList.remove('active'); });
 

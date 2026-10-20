@@ -46,7 +46,7 @@
         }
         h1, h2, h3, h4, h5, h6 {
             color: var(--text-main);
-            font-weight: 800;
+            font-weight: 600 !important;
             line-height: 1.2;
             letter-spacing: -0.02em;
         }
@@ -160,14 +160,20 @@
         .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
         .navbar-right-desktop { display: none; align-items: center; gap: 0.75rem; }
         .icon-btn {
-            width: 2.5rem; height: 2.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
             background-color: transparent;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             color: var(--text-main);
             border: 2px solid var(--accent-orange);
             cursor: pointer;
             transition: 0.2s;
+            box-sizing: border-box;
+            padding: 0;
+            flex-shrink: 0;
         }
         .icon-btn:hover {
             background-color: var(--accent-orange);
@@ -176,13 +182,21 @@
         .login-btn {
             background-color: var(--accent-orange);
             color: var(--pure-white);
-            padding: 0.625rem 1.25rem;
+            height: 2.5rem;
+            padding: 0 1.25rem;
             border-radius: 9999px;
             font-weight: 800;
             font-size: 0.875rem;
-            display: flex; align-items: center; gap: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             transition: 0.2s;
             border: 2px solid var(--accent-orange);
+            box-sizing: border-box;
+            line-height: 1;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .login-btn:hover {
             background-color: transparent;
@@ -284,17 +298,36 @@
         }
         .section-title {
             font-size: 2.5rem;
-            font-weight: 900;
+            font-weight: 600;
             margin-bottom: 1rem;
         }
         @media (min-width: 768px) { .section-title { font-size: 3rem; } }
 
         /* Hero */
         .faq-hero {
-            background: var(--bg-primary);
-            padding-top: 130px;
-            padding-bottom: 2rem;
+            min-height: 580px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 110px;
+            padding-bottom: 4rem;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.76) 100%),
+                        url('https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+        [data-theme="dark"] .faq-hero {
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.92) 0%, rgba(15, 15, 15, 0.82) 100%),
+                        url('https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .faq-hero .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
         }
         .faq-hero h1 {
             font-size: 3.5rem;
@@ -733,7 +766,7 @@
         .footer-heading {
             color: var(--accent-orange);
             margin-bottom: 1.25rem;
-            font-weight: 800;
+            font-weight: 600;
             font-size: 1.1rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;

@@ -54,10 +54,11 @@
             color: var(--text-main);
             transition: background-color 0.3s, color 0.3s;
             line-height: 1.5;
+            overflow-x: hidden;
         }
         h1, h2, h3, h4, h5, h6 {
             color: var(--text-main);
-            font-weight: 800;
+            font-weight: 600 !important;
             line-height: 1.2;
             letter-spacing: -0.02em;
         }
@@ -184,13 +185,16 @@
             height: 2.5rem;
             background-color: transparent;
             border-radius: 50%;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             color: var(--text-main);
             border: 2px solid var(--accent-orange);
             cursor: pointer;
             transition: 0.2s;
+            box-sizing: border-box;
+            padding: 0;
+            flex-shrink: 0;
         }
         .icon-btn:hover {
             background-color: var(--accent-orange);
@@ -199,15 +203,21 @@
         .login-btn {
             background-color: var(--accent-orange);
             color: var(--pure-white);
-            padding: 0.625rem 1.25rem;
+            height: 2.5rem;
+            padding: 0 1.25rem;
             border-radius: 9999px;
             font-weight: 800;
             font-size: 0.875rem;
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             transition: 0.2s;
             border: 2px solid var(--accent-orange);
+            box-sizing: border-box;
+            line-height: 1;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .login-btn:hover {
             background-color: transparent;
@@ -303,15 +313,28 @@
 
         /* ----- HERO (sneaker gallery vibe) ----- */
         .hero {
-            background-color: var(--bg-primary);
-            min-height: 100vh;
+            min-height: 580px;
             width: 100%;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
             margin-top: 0;
-            padding-top: 80px;
+            padding-top: 110px;
+            padding-bottom: 4rem;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.78) 100%),
+                        url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.92) 0%, rgba(15, 15, 15, 0.82) 100%),
+                        url('https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
         }
         .hero-pattern {
             position: absolute;
@@ -321,24 +344,84 @@
         }
         .hero-grid {
             display: grid;
-            gap: 3rem;
+            gap: 2.5rem;
             align-items: center;
         }
-        @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+
+        .hero-badge {
+            color: var(--accent-orange);
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+        @media (max-width: 480px) {
+            .hero-badge {
+                font-size: 0.75rem;
+                letter-spacing: 0.03em;
+            }
+        }
+
         .hero-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
+            font-size: 2.25rem;
+            font-weight: 600;
+            line-height: 1.12;
+            margin-bottom: 1.25rem;
             color: var(--text-main);
             letter-spacing: -0.03em;
+            word-break: break-word;
+        }
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.85rem;
+                line-height: 1.15;
+                margin-bottom: 1rem;
+            }
         }
         @media (min-width: 640px) { .hero-title { font-size: 3rem; } }
         @media (min-width: 768px) { .hero-title { font-size: 3.75rem; } }
         @media (min-width: 1024px) { .hero-title { font-size: 4.5rem; } }
         .hero-title span { color: var(--accent-orange); }
-        .hero-text { font-size: 1.125rem; color: var(--text-muted); margin-bottom: 2rem; font-weight: 500; }
-        .btn-group { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+        .hero-text {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        @media (max-width: 480px) {
+            .hero-text {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
+                line-height: 1.45;
+            }
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        @media (max-width: 480px) {
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.75rem;
+            }
+            .btn-group .btn-primary,
+            .btn-group .btn-outline {
+                width: 100%;
+                justify-content: center;
+                padding: 0.875rem 1.25rem;
+                font-size: 0.9rem;
+            }
+        }
+
         .btn-primary {
             background-color: var(--accent-orange);
             color: var(--pure-white);
@@ -357,6 +440,22 @@
             color: var(--text-main);
             border-color: var(--text-main);
         }
+        .btn-primary.btn-notify {
+            background-color: var(--text-main);
+            color: var(--pure-white);
+            border-color: var(--text-main);
+        }
+        [data-theme="dark"] .btn-primary.btn-notify {
+            background-color: #242424;
+            color: var(--pure-white);
+            border-color: #3e3e3e;
+        }
+        .btn-primary.btn-notify:hover {
+            background-color: var(--accent-orange);
+            color: var(--pure-white);
+            border-color: var(--accent-orange);
+            box-shadow: 0 4px 14px rgba(255, 70, 0, 0.35);
+        }
         .btn-outline {
             border: 2px solid var(--accent-orange);
             color: var(--text-main);
@@ -374,9 +473,42 @@
             background-color: var(--accent-orange);
             color: var(--pure-white);
         }
-        .stats { display: flex; gap: 2rem; margin-top: 2.5rem; }
+
+        .stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 640px) {
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
+                margin-top: 1.75rem;
+                padding-top: 1.25rem;
+                border-top: 1px solid var(--border-subtle);
+                width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .stats {
+                gap: 0.5rem;
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+            }
+            .stat-number {
+                font-size: 1.35rem !important;
+            }
+            .stat-label {
+                font-size: 0.7rem !important;
+                line-height: 1.2;
+                margin-top: 0.2rem;
+            }
+        }
         .stat-number { font-size: 2rem; font-weight: 900; color: var(--accent-orange); line-height: 1; }
         .stat-label { font-size: 0.875rem; display: block; color: var(--text-muted); font-weight: 600; }
+
         .hero-image {
             position: relative;
             border-radius: 1.5rem;
@@ -386,6 +518,20 @@
             width: 100%;
             background-color: var(--bg-secondary);
         }
+        @media (max-width: 640px) {
+            .hero {
+                padding-top: 100px;
+                padding-bottom: 2.5rem;
+                min-height: auto;
+            }
+            .hero-image {
+                min-height: 240px;
+                max-height: 300px;
+                aspect-ratio: 4 / 3;
+                border-radius: 1.25rem;
+                border-width: 3px;
+            }
+        }
         .hero-video {
             position: absolute;
             top: 0;
@@ -393,6 +539,51 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* ----- SECTION TITLES & LABELS ----- */
+        .section-label {
+            color: var(--accent-orange);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-size: 1.85rem;
+            font-weight: 600 !important;
+            line-height: 1.2;
+            margin: 0.5rem 0 0.75rem;
+            letter-spacing: -0.02em;
+        }
+        @media (min-width: 640px) { .section-title { font-size: 2.25rem; } }
+        @media (min-width: 768px) { .section-title { font-size: 2.5rem; } }
+
+        .services-section {
+            background: var(--bg-secondary);
+            padding: 3rem 0;
+        }
+        @media (min-width: 768px) {
+            .services-section { padding: 5rem 0; }
+        }
+        .services-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .services-header { margin-bottom: 3.5rem; }
+        }
+        .services-header .section-subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 580px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        @media (min-width: 768px) {
+            .services-header .section-subtitle { font-size: 1rem; }
         }
 
         /* ----- CARDS & SECTIONS ----- */
@@ -404,6 +595,18 @@
             border-radius: 2rem;
             padding: 2rem;
             transition: 0.2s;
+        }
+        @media (max-width: 480px) {
+            .service-card {
+                padding: 1.5rem 1.25rem;
+                border-radius: 1.5rem;
+            }
+            .service-icon {
+                width: 4rem;
+                height: 4rem;
+                font-size: 2rem;
+                margin: 0 auto 1rem;
+            }
         }
         .service-card:hover, .model-card:hover { border-color: var(--accent-orange); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(255,70,0,0.12); }
         .service-icon {
@@ -425,16 +628,265 @@
         .spec-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border-subtle); color: var(--text-muted); font-weight: 500; }
         .spec-list i { color: var(--accent-orange); margin-right: 0.5rem; }
 
-        .steps-grid {
-            display: grid; gap: 2rem;
-            grid-template-columns: repeat(1,1fr);
+        /* ----- BESPOKE PROCESS SECTION ----- */
+        .process-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
-        @media (min-width:768px) { .steps-grid { grid-template-columns: repeat(4,1fr); } }
-        .step-item { text-align: center; }
-        .step-circle {
-            width: 5rem; height: 5rem; background-color: var(--bg-secondary); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
-            border: 3px solid var(--accent-orange); font-size: 2rem; color: var(--accent-orange);
+        @media (min-width: 640px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .process-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .process-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 2.25rem 1.5rem 1.75rem;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .process-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 12px 28px rgba(255, 70, 0, 0.12);
+        }
+        .step-num-badge {
+            position: absolute;
+            top: -14px;
+            background: var(--accent-orange);
+            color: var(--pure-white);
+            font-size: 0.8rem;
+            font-weight: 900;
+            padding: 0.25rem 0.85rem;
+            border-radius: 9999px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .step-icon-wrap {
+            width: 4.75rem;
+            height: 4.75rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            color: var(--accent-orange);
+            margin: 0.5rem 0 1.25rem;
+            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+        .process-card:hover .step-icon-wrap {
+            background: var(--accent-orange);
+            color: var(--pure-white);
+            transform: scale(1.08) rotate(5deg);
+        }
+        .process-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.65rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .process-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+        .step-pill-tag {
+            background: rgba(255, 70, 0, 0.08);
+            color: var(--accent-orange);
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 70, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .process-guarantee-bar {
+            margin-top: 3.5rem;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 1.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .guarantee-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.75rem;
+            align-items: center;
+        }
+        .guarantee-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .guarantee-item i {
+            color: var(--accent-orange);
+            font-size: 1.25rem;
+        }
+
+        /* ----- LOOKBOOK & STREET STYLE SECTION ----- */
+        .lookbook-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+            margin: 2rem 0 3rem;
+        }
+        .lookbook-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            color: var(--text-muted);
+            padding: 0.55rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .lookbook-btn:hover,
+        .lookbook-btn.active {
+            background: var(--accent-orange);
+            color: var(--pure-white);
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+        }
+        @media (min-width: 640px) { .lookbook-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .lookbook-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .lookbook-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-subtle);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        .lookbook-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 14px 30px rgba(255, 70, 0, 0.14);
+        }
+        .lookbook-img-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .lookbook-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .lookbook-card:hover .lookbook-img-box img {
+            transform: scale(1.06);
+        }
+        .lookbook-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(15, 15, 15, 0.85);
+            color: var(--pure-white);
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            border: 1px solid var(--accent-orange);
+            backdrop-filter: blur(6px);
+        }
+        [dir="rtl"] .lookbook-badge {
+            left: auto;
+            right: 1rem;
+        }
+        .lookbook-card-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .lookbook-user {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            margin-bottom: 0.5rem;
+        }
+        .lookbook-user span:last-child {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .lookbook-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--text-main);
+        }
+        .lookbook-quote {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.45;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        .lookbook-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+            font-weight: 800;
+        }
+        .lookbook-tag-link {
+            color: var(--accent-orange);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: gap 0.2s;
+        }
+        .lookbook-tag-link:hover {
+            gap: 0.55rem;
+        }
+        .lookbook-social-banner {
+            margin-top: 3.5rem;
+            background: var(--bg-secondary);
+            border: 2px dashed var(--accent-orange);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
 
         .preview-card {
@@ -513,7 +965,7 @@
         .footer-heading { 
             color: var(--accent-orange); 
             margin-bottom: 1.25rem;
-            font-weight: 800;
+            font-weight: 600;
             font-size: 1.1rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -679,8 +1131,8 @@
     <div class="hero-pattern"></div>
     <div class="container relative z-10">
         <div class="hero-grid">
-            <div class="fade-in-up order-2 lg:order-1">
-                <span style="color: var(--accent-orange); font-weight: 800; letter-spacing: 0.05em; display: block; margin-bottom: 0.75rem; text-transform: uppercase;"><i class="fas fa-fire"></i> LIMITED DROPS · CUSTOM KICKS</span>
+            <div class="fade-in-up">
+                <span class="hero-badge"><i class="fas fa-fire"></i> LIMITED DROPS · CUSTOM KICKS</span>
                 <h1 class="hero-title">YOUR <span>CANVAS.</span><br>YOUR CROWN.</h1>
                 <p class="hero-text">Exclusive sneakers, hand-painted customs & premium streetwear. Step into the spotlight.</p>
                 <div class="btn-group">
@@ -693,7 +1145,7 @@
                     <div><span class="stat-number">24H</span><span class="stat-label">Custom Turnaround</span></div>
                 </div>
             </div>
-           <div class="hero-image order-1 lg:order-2" style="width:100%; height:100%;">
+           <div class="hero-image" style="width:100%; height:100%;">
             <!-- placehold.co fallback if images missing -->
             <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop" 
                  alt="Custom sneaker on display"
@@ -704,12 +1156,12 @@
 </section>
 
 <!-- SERVICES (renamed for sneaker boutique) -->
-<section id="services" style="background: var(--bg-secondary); padding: 5rem 0;">
+<section id="services" class="services-section">
     <div class="container">
-        <div style="text-align:center; margin-bottom:3.5rem;">
-            <span style="color:var(--accent-orange); font-weight:800; text-transform:uppercase; letter-spacing:1px;">what we offer</span>
-            <h2 style="font-size:2.5rem; margin:1rem 0;">Custom Sneaker & Streetwear</h2>
-            <p style="color:var(--text-muted);">Custom kicks, limited drops, apparel — all curated for the culture</p>
+        <div class="services-header">
+            <span class="section-label">WHAT WE OFFER</span>
+            <h2 class="section-title">Custom Sneaker & Streetwear</h2>
+            <p class="section-subtitle">Custom kicks, limited drops, apparel — all curated for the culture</p>
         </div>
         <div class="services-grid">
             <div class="service-card">
@@ -734,12 +1186,86 @@
     </div>
 </section>
 
+<!-- ================= SECTION: THE BESPOKE CRAFT (4-Step Custom Journey) ================= -->
+<section id="custom-process" style="background: var(--bg-primary); padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 3.5rem;">
+            <span style="color: var(--accent-orange); font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+                <i class="fas fa-hammer"></i> THE BESPOKE CRAFT
+            </span>
+            <h2 class="section-title">How Custom Orders Work</h2>
+            <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto;">
+                From deadstock silhouette to gallery-grade wearable art in four precise steps. Every pair is completely one-of-one.
+            </p>
+        </div>
+
+        <div class="process-grid">
+            <!-- Step 01 -->
+            <div class="process-card">
+                <span class="step-num-badge">Step 01</span>
+                <div class="step-icon-wrap"><i class="fas fa-shoe-prints"></i></div>
+                <h3>Choose Silhouette</h3>
+                <p>Pick a brand new deadstock pair from our vault (Jordan 1, Dunk, AF1, Yeezy) or ship your own clean pair using our insured label.</p>
+                <span class="step-pill-tag">Vault or BYO Pair</span>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="process-card">
+                <span class="step-num-badge">Step 02</span>
+                <div class="step-icon-wrap"><i class="fas fa-drafting-compass"></i></div>
+                <h3>Digital 3D Proof</h3>
+                <p>Collaborate 1-on-1 with our Chicago master artists. Get photorealistic digital mockups & Pantone color swatches within 24 hours.</p>
+                <span class="step-pill-tag">Unlimited Mockup Revisions</span>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="process-card">
+                <span class="step-num-badge">Step 03</span>
+                <div class="step-icon-wrap"><i class="fas fa-palette"></i></div>
+                <h3>Handcrafted & Sealed</h3>
+                <p>Hand-prepped, airbrushed, and detailed with Angelus acrylic leather paints, then sealed with a hydrophobic scratch-proof topcoat.</p>
+                <span class="step-pill-tag">100% Crack-Resistant</span>
+            </div>
+
+            <!-- Step 04 -->
+            <div class="process-card">
+                <span class="step-num-badge">Step 04</span>
+                <div class="step-icon-wrap"><i class="fas fa-box-open"></i></div>
+                <h3>Vault Unboxing</h3>
+                <p>Delivered in an engraved magnetic wooden collector box with NFC cryptographic certificate of authenticity and custom rope laces.</p>
+                <span class="step-pill-tag">Insured Global Express</span>
+            </div>
+        </div>
+
+        <!-- Guarantee Trust Bar -->
+        <div class="process-guarantee-bar">
+            <div class="guarantee-items">
+                <div class="guarantee-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Lifetime Paint Durability Guarantee</span>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>24H Rush Turnaround Option</span>
+                </div>
+                <div class="guarantee-item">
+                    <i class="fas fa-fingerprint"></i>
+                    <span>NFC Cryptographic Provenance</span>
+                </div>
+            </div>
+            <a href="contact.html" class="btn-primary" style="margin: 0;">
+                <i class="fas fa-paint-brush"></i> Start Your Custom
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- FLEET (now "Featured Drops" – sneakers) -->
-<section style="background:var(--bg-primary); padding:5rem 0;">
+<section style="background:var(--bg-secondary); padding:5rem 0;">
     <div class="container">
         <div style="text-align:center; margin-bottom:3.5rem;">
             <span style="color:var(--accent-orange); font-weight:800; text-transform:uppercase; letter-spacing:1px;">HOT RIGHT NOW</span>
-            <h2 style="font-size:2.5rem;">Featured Drops</h2>
+            <h2 class="section-title">Featured Drops</h2>
         </div>
         <div class="models-grid">
             <div class="model-card">
@@ -762,7 +1288,7 @@
                 <p style="color:var(--text-muted);">Streetwear essential</p>
                 <div class="model-price">$249<span style="font-size:1rem; color:var(--text-muted);">/pair</span></div>
                 <ul class="spec-list"><li><i class="fas fa-check"></i> Premium suede</li><li><i class="fas fa-check"></i> Unisex sizing</li></ul>
-                <a href="#" class="btn-primary" style="display:block; text-align:center; background:var(--text-main); border-color:var(--text-main);">Notify Me</a>
+                <a href="#" class="btn-primary btn-notify" style="display:block; text-align:center;">Notify Me</a>
             </div>
             <div class="model-card">
                 <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2070&auto=format&fit=crop" alt="Adidas Yeezy">
@@ -775,6 +1301,128 @@
                 <ul class="spec-list"><li><i class="fas fa-check"></i> Primeknit upper</li><li><i class="fas fa-check"></i> Boost cushioning</li></ul>
                 <a href="#" class="btn-primary" style="display:block; text-align:center;">Add to Cart</a>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= SECTION: STREET STYLE LOOKBOOK & COMMUNITY FEED ================= -->
+<section id="lookbook" style="background: var(--bg-primary); padding: 5rem 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <span style="color: var(--accent-orange); font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+                <i class="fas fa-camera-retro"></i> STREET HEAT ON FEET
+            </span>
+            <h2 class="section-title">#SOLEHOUSE Street Style</h2>
+            <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto;">
+                Spotted worldwide. See how the culture styles our bespoke customs, limited drops, and heavyweight streetwear fits.
+            </p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="lookbook-filter-bar">
+            <button class="lookbook-btn active" data-filter="all"><i class="fas fa-border-all"></i> All Fits</button>
+            <button class="lookbook-btn" data-filter="jordans"><i class="fas fa-fire"></i> Jordan Customs</button>
+            <button class="lookbook-btn" data-filter="dunks"><i class="fas fa-shoe-prints"></i> Dunk Lows</button>
+            <button class="lookbook-btn" data-filter="apparel"><i class="fas fa-tshirt"></i> Streetwear Fits</button>
+            <button class="lookbook-btn" data-filter="bespoke"><i class="fas fa-gem"></i> 1-of-1 Grails</button>
+        </div>
+
+        <!-- Lookbook Grid -->
+        <div class="lookbook-grid">
+            <!-- Card 1 -->
+            <div class="lookbook-card" data-category="jordans">
+                <div class="lookbook-img-box">
+                    <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?q=80&w=2070&auto=format&fit=crop" alt="Jordan 1 Custom on street" loading="lazy">
+                    <span class="lookbook-badge">AJ1 Chicago Split</span>
+                </div>
+                <div class="lookbook-card-body">
+                    <div class="lookbook-user">
+                        <span><i class="fab fa-instagram"></i> @marcus_kicks</span>
+                        <span>Chicago, IL</span>
+                    </div>
+                    <div class="lookbook-title">Jordan 1 High "Chicago Split"</div>
+                    <p class="lookbook-quote">"Turned heads all weekend at ComplexCon. The matte seal has zero crease marks even after 3 full days of heavy wear."</p>
+                    <div class="lookbook-card-footer">
+                        <span style="color: var(--accent-orange); font-weight: 800;">$499 Custom</span>
+                        <a href="gallery.html" class="lookbook-tag-link">View Build <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="lookbook-card" data-category="dunks">
+                <div class="lookbook-img-box">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=2070&auto=format&fit=crop" alt="Nike Dunk Low street style" loading="lazy">
+                    <span class="lookbook-badge">Dunk Low Vintage</span>
+                </div>
+                <div class="lookbook-card-body">
+                    <div class="lookbook-user">
+                        <span><i class="fab fa-instagram"></i> @tokyo_hype</span>
+                        <span>Shibuya, Tokyo</span>
+                    </div>
+                    <div class="lookbook-title">Nike Dunk Low "Sakura Fade"</div>
+                    <p class="lookbook-quote">"The leather texture and hand-painted cherry blossom swoosh look even crazier in natural light. 10/10 craftsmanship."</p>
+                    <div class="lookbook-card-footer">
+                        <span style="color: var(--accent-orange); font-weight: 800;">$379 Custom</span>
+                        <a href="gallery.html" class="lookbook-tag-link">View Build <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="lookbook-card" data-category="apparel">
+                <div class="lookbook-img-box">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=2070&auto=format&fit=crop" alt="Streetwear Hoodie oversized fit" loading="lazy">
+                    <span class="lookbook-badge">450GSM Hoodie</span>
+                </div>
+                <div class="lookbook-card-body">
+                    <div class="lookbook-user">
+                        <span><i class="fab fa-tiktok"></i> @streetwear_dan</span>
+                        <span>Brooklyn, NY</span>
+                    </div>
+                    <div class="lookbook-title">Acid-Wash Heavyweight Hoodie</div>
+                    <p class="lookbook-quote">"Heaviest fleece I own. The boxy drape paired with custom high-tops has become my everyday uniform."</p>
+                    <div class="lookbook-card-footer">
+                        <span style="color: var(--accent-orange); font-weight: 800;">$145 Capsule</span>
+                        <a href="gallery.html" class="lookbook-tag-link">Shop Fit <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="lookbook-card" data-category="bespoke">
+                <div class="lookbook-img-box">
+                    <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?q=80&w=2070&auto=format&fit=crop" alt="1 of 1 bespoke custom grail" loading="lazy">
+                    <span class="lookbook-badge">1-of-1 Grail</span>
+                </div>
+                <div class="lookbook-card-body">
+                    <div class="lookbook-user">
+                        <span><i class="fab fa-instagram"></i> @elena_soles</span>
+                        <span>London, UK</span>
+                    </div>
+                    <div class="lookbook-title">Retro High "Monogram Gold"</div>
+                    <p class="lookbook-quote">"Delivered in the laser-engraved wood case with NFC chip. Pure museum grade craftsmanship you can rock on asphalt."</p>
+                    <div class="lookbook-card-footer">
+                        <span style="color: var(--accent-orange); font-weight: 800;">$549 Custom</span>
+                        <a href="gallery.html" class="lookbook-tag-link">View Build <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Community Banner -->
+        <div class="lookbook-social-banner">
+            <div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 0.35rem; color: var(--text-main);">
+                    Get Featured on the <span style="color: var(--accent-orange);">Wall of Heat</span>
+                </h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">
+                    Tag <strong>@SOLEHOUSE</strong> with <strong>#SoleHouseKicks</strong> on IG or TikTok. Top community fits win a $250 drop voucher every month.
+                </p>
+            </div>
+            <a href="https://instagram.com" target="_blank" class="btn-outline" style="border-color: var(--accent-orange); color: var(--accent-orange);">
+                <i class="fab fa-instagram"></i> Follow @SOLEHOUSE
+            </a>
         </div>
     </div>
 </section>
@@ -941,6 +1589,26 @@
         if (scrollBtn) scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
         window.addEventListener('resize', () => { if (window.innerWidth >= 1280 && mobileMenu) mobileMenu.classList.remove('active'); });
+
+        // Lookbook Filter Logic
+        const lookbookBtns = document.querySelectorAll('.lookbook-btn');
+        const lookbookCards = document.querySelectorAll('.lookbook-card');
+        lookbookBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                lookbookBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                lookbookCards.forEach(card => {
+                    const cat = card.getAttribute('data-category');
+                    if (filter === 'all' || cat === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
     })();
 </script>
 </body>
